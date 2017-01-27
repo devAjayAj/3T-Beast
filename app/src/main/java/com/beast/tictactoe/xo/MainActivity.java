@@ -1,12 +1,12 @@
 package com.beast.tictactoe.xo;
 
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     int ctrlvar;
     ImageView b1, b2, b3, b4, b5, b6, b7, b8, b9;
-    LinearLayout llayout,act;
+    LinearLayout llayout;
+    CardView cv;
     int dataentry[][] = new int[3][3];
     int x = 0, y = 0, c;
     TextView xs, ys;
@@ -24,8 +25,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         ctrlvar = 0;
         for (int i = 0; i <= 2; i++)
@@ -35,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         xs = (TextView) findViewById(R.id.xscore);
         ys = (TextView) findViewById(R.id.yscore);
         llayout = (LinearLayout) findViewById(R.id.llayout);
-        act = (LinearLayout) findViewById(R.id.activity_main);
         b1 = (ImageView) findViewById(R.id.b1);
         b2 = (ImageView) findViewById(R.id.b2);
         b3 = (ImageView) findViewById(R.id.b3);
@@ -54,8 +54,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         b7.setOnClickListener(this);
         b8.setOnClickListener(this);
         b9.setOnClickListener(this);
-        int sqrSize=act.getLayoutParams().width;
-        llayout.setLayoutParams(new LinearLayout.LayoutParams(sqrSize, sqrSize));
+        cv = (CardView) findViewById(R.id.card);
+        cv.post(new Runnable() {
+            @Override
+            public void run() {
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(cv.getMeasuredWidth(), cv.getMeasuredWidth());
+                params.setMargins(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
+                cv.setLayoutParams(params);
+            }
+        });
+        //llayout.setLayoutParams(new LinearLayout.LayoutParams(sqrSize, sqrSize));
+    }
+
+    private int dpToPx(int dp) {
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 
     public void clear() {
