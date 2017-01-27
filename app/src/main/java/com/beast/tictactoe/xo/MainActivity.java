@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     int ctrlvar;
     ImageView b1, b2, b3, b4, b5, b6, b7, b8, b9;
+    LinearLayout llayout,act;
     int dataentry[][] = new int[3][3];
     int x = 0, y = 0, c;
     TextView xs, ys;
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         ctrlvar = 0;
         for (int i = 0; i <= 2; i++)
@@ -29,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         xs = (TextView) findViewById(R.id.xscore);
         ys = (TextView) findViewById(R.id.yscore);
+        llayout = (LinearLayout) findViewById(R.id.llayout);
+        act = (LinearLayout) findViewById(R.id.activity_main);
         b1 = (ImageView) findViewById(R.id.b1);
         b2 = (ImageView) findViewById(R.id.b2);
         b3 = (ImageView) findViewById(R.id.b3);
@@ -47,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         b7.setOnClickListener(this);
         b8.setOnClickListener(this);
         b9.setOnClickListener(this);
+        int sqrSize=act.getLayoutParams().width;
+        llayout.setLayoutParams(new LinearLayout.LayoutParams(sqrSize, sqrSize));
     }
 
     public void clear() {
