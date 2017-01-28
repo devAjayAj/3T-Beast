@@ -4,6 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:baselineAligned="false"
     android:orientation="vertical"
     android:weightSum="5"
     tools:context="com.beast.tictactoe.xo.MainActivity">
@@ -15,175 +16,221 @@
         android:background="#1A237E"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/xscore"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+        <Button
+            android:text="Reset Score"
+            android:id="@+id/reset"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="15dp"
-            android:textColor="@android:color/white"
-            android:textSize="25dp" />
-
-        <TextView
-            android:id="@+id/yscore"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignLeft="@+id/xscore"
-            android:layout_alignStart="@+id/xscore"
-            android:layout_below="@+id/xscore"
-            android:textColor="@android:color/white"
-            android:textSize="25dp" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_above="@+id/yscore"
-            android:layout_toLeftOf="@+id/xscore"
-            android:layout_toStartOf="@+id/xscore"
-            android:text="X:"
-            android:textColor="@android:color/white"
-            android:textSize="25dp" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:text="O:"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:layout_alignBaseline="@+id/yscore"
             android:layout_alignBottom="@+id/yscore"
             android:layout_toLeftOf="@+id/yscore"
-            android:layout_toStartOf="@+id/yscore"
-            android:text="Y:"
+            android:layout_toStartOf="@+id/yscore" />
+
+        <TextView
+            android:id="@+id/xscore"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:text="0"
             android:textColor="@android:color/white"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:layout_alignBaseline="@+id/textView5"
+            android:layout_alignBottom="@+id/textView5"
+            android:layout_toLeftOf="@+id/textView5"
+            android:layout_toStartOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="X:"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:layout_alignBaseline="@+id/xscore"
+            android:layout_alignBottom="@+id/xscore"
+            android:layout_toLeftOf="@+id/xscore"
+            android:layout_toStartOf="@+id/xscore" />
+
+        <TextView
+            android:id="@+id/dispTurn"
+            android:textColor="@android:color/white"
+            android:textSize="30dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:textAlignment="center" />
+
+        <Button
+            android:text="Play Again!"
+            android:id="@+id/pagain"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/dispTurn"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:text="---"
+            android:id="@+id/button"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:background="@android:color/transparent"
+            android:textColorLink="@android:color/white"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/yscore"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:text="0"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:layout_alignBottom="@+id/button"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="8dp"
         android:layout_weight="3">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/black"
-            android:orientation="vertical"
-            android:weightSum="3">
+            android:layout_margin="8dp">
 
             <LinearLayout
+                android:id="@+id/llayout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
+                android:layout_height="match_parent"
+                android:background="#757575"
+                android:orientation="vertical"
                 android:weightSum="3">
 
-                <ImageView
-                    android:id="@+id/b1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="1dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/empty"
-                    android:scaleType="fitXY" />
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                <ImageView
-                    android:id="@+id/b2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    <ImageView
+                        android:id="@+id/b1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/empty"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/b2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/empty"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/b3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/empty"
+                        android:scaleType="fitXY" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/empty"
-                    android:scaleType="fitXY" />
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                <ImageView
-                    android:id="@+id/b3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="1dp"
+                    <ImageView
+                        android:id="@+id/b4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/empty"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/b5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/empty"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/b6"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/empty"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:background="@drawable/empty"
-                    android:scaleType="fitXY" />
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
+                    <ImageView
+                        android:id="@+id/b7"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/empty"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/b8"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/empty"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/b9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="1dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/empty"
+                        android:scaleType="fitXY" />
+
+                </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <ImageView
-                    android:id="@+id/b4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginRight="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/empty"
-                    android:scaleType="fitXY" />
-
-                <ImageView
-                    android:id="@+id/b5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/empty"
-                    android:scaleType="fitXY" />
-
-                <ImageView
-                    android:id="@+id/b6"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/empty"
-                    android:scaleType="fitXY" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <ImageView
-                    android:id="@+id/b7"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="1dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/empty"
-                    android:scaleType="fitXY" />
-
-                <ImageView
-                    android:id="@+id/b8"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/empty"
-                    android:scaleType="fitXY" />
-
-                <ImageView
-                    android:id="@+id/b9"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="1dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/empty"
-                    android:scaleType="fitXY" />
-
-            </LinearLayout>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
 </LinearLayout>
