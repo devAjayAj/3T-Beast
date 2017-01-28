@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.beast.tictactoe.xo.Extras.M;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     int ctrlvar;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int x = 0, y = 0, c;
     TextView xs, ys, dispTurn;
     Button playAgain, reset;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         xs = (TextView) findViewById(R.id.xscore);
         ys = (TextView) findViewById(R.id.yscore);
         dispTurn = (TextView) findViewById(R.id.dispTurn);
-        dispTurn.setText("X's Turn");
+        dispTurn.setText(getString(R.string.x_turn));
         playAgain = (Button) findViewById(R.id.pagain);
         reset = (Button) findViewById(R.id.reset);
         playAgain.setVisibility(View.INVISIBLE);
@@ -60,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         b7.setOnClickListener(this);
         b8.setOnClickListener(this);
         b9.setOnClickListener(this);
+        back = (ImageView) findViewById(R.id.back);
+        back.setOnClickListener(this);
         cv = (CardView) findViewById(R.id.card);
         cv.post(new Runnable() {
             @Override
@@ -114,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void newGame() {
-        dispTurn.setText("X's Turn");
+        dispTurn.setText(getString(R.string.x_turn));
         playAgain.setClickable(false);
         playAgain.setVisibility(View.INVISIBLE);
         ctrlvar = 0;
@@ -147,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         c = (dataentry[0][0] + dataentry[0][1] + dataentry[0][2]);
         int gameover = 0;
         if (c == 3) {
-            Toast.makeText(MainActivity.this, "X wins", Toast.LENGTH_SHORT).show();
+            M.Sl(findViewById(android.R.id.content),"X Wins!");
             gameover = 1;
             x++;
             clear();
@@ -159,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         c = (dataentry[1][0] + dataentry[1][1] + dataentry[1][2]);
         if (c == 3) {
-            Toast.makeText(MainActivity.this, "X wins", Toast.LENGTH_SHORT).show();
+            M.Ss(findViewById(android.R.id.content), "X Wins!");
             gameover = 1;
             x++;
             clear();
@@ -171,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         c = (dataentry[2][0] + dataentry[2][1] + dataentry[2][2]);
         if (c == 3) {
-            Toast.makeText(MainActivity.this, "X wins", Toast.LENGTH_SHORT).show();
+            M.ts(MainActivity.this, "X wins");
             gameover = 1;
             x++;
             clear();
@@ -254,13 +259,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b1.setBackgroundResource(R.drawable.x);
                     b1.setClickable(false);
-                    dispTurn.setText("O's Turn");
+                    dispTurn.setText(getString(R.string.o_turn));
                     ctrlvar++;
                     dataentry[0][0] = 1;
                 } else {
                     b1.setBackgroundResource(R.drawable.o);
                     b1.setClickable(false);
-                    dispTurn.setText("X's Turn");
+                    dispTurn.setText(getString(R.string.x_turn));
                     ctrlvar++;
                     dataentry[0][0] = 10;
                 }
@@ -269,13 +274,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b2.setBackgroundResource(R.drawable.x);
                     b2.setClickable(false);
-                    dispTurn.setText("O's Turn");
+                    dispTurn.setText(getString(R.string.o_turn));
                     ctrlvar++;
                     dataentry[0][1] = 1;
                 } else {
                     b2.setBackgroundResource(R.drawable.o);
                     b2.setClickable(false);
-                    dispTurn.setText("X's Turn");
+                    dispTurn.setText(getString(R.string.x_turn));
                     ctrlvar++;
                     dataentry[0][1] = 10;
                 }
@@ -284,13 +289,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b3.setBackgroundResource(R.drawable.x);
                     b3.setClickable(false);
-                    dispTurn.setText("O's Turn");
+                    dispTurn.setText(getString(R.string.o_turn));
                     ctrlvar++;
                     dataentry[0][2] = 1;
                 } else {
                     b3.setBackgroundResource(R.drawable.o);
                     b3.setClickable(false);
-                    dispTurn.setText("X's Turn");
+                    dispTurn.setText(getString(R.string.x_turn));
                     ctrlvar++;
                     dataentry[0][2] = 10;
                 }
@@ -299,13 +304,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b4.setBackgroundResource(R.drawable.x);
                     b4.setClickable(false);
-                    dispTurn.setText("O's Turn");
+                    dispTurn.setText(getString(R.string.o_turn));
                     ctrlvar++;
                     dataentry[1][0] = 1;
                 } else {
                     b4.setBackgroundResource(R.drawable.o);
                     b4.setClickable(false);
-                    dispTurn.setText("X's Turn");
+                    dispTurn.setText(getString(R.string.x_turn));
                     ctrlvar++;
                     dataentry[1][0] = 10;
                 }
@@ -314,13 +319,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b5.setBackgroundResource(R.drawable.x);
                     b5.setClickable(false);
-                    dispTurn.setText("O's Turn");
+                    dispTurn.setText(getString(R.string.o_turn));
                     ctrlvar++;
                     dataentry[1][1] = 1;
                 } else {
                     b5.setBackgroundResource(R.drawable.o);
                     b5.setClickable(false);
-                    dispTurn.setText("X's Turn");
+                    dispTurn.setText(getString(R.string.x_turn));
                     ctrlvar++;
                     dataentry[1][1] = 10;
                 }
@@ -329,13 +334,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b6.setBackgroundResource(R.drawable.x);
                     b6.setClickable(false);
-                    dispTurn.setText("O's Turn");
+                    dispTurn.setText(getString(R.string.o_turn));
                     ctrlvar++;
                     dataentry[1][2] = 1;
                 } else {
                     b6.setBackgroundResource(R.drawable.o);
                     b6.setClickable(false);
-                    dispTurn.setText("X's Turn");
+                    dispTurn.setText(getString(R.string.x_turn));
                     ctrlvar++;
                     dataentry[1][2] = 10;
                 }
@@ -344,13 +349,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b7.setBackgroundResource(R.drawable.x);
                     b7.setClickable(false);
-                    dispTurn.setText("O's Turn");
+                    dispTurn.setText(getString(R.string.o_turn));
                     ctrlvar++;
                     dataentry[2][0] = 1;
                 } else {
                     b7.setBackgroundResource(R.drawable.o);
                     b7.setClickable(false);
-                    dispTurn.setText("X's Turn");
+                    dispTurn.setText(getString(R.string.x_turn));
                     ctrlvar++;
                     dataentry[2][0] = 10;
                 }
@@ -359,13 +364,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b8.setBackgroundResource(R.drawable.x);
                     b8.setClickable(false);
-                    dispTurn.setText("O's Turn");
+                    dispTurn.setText(getString(R.string.o_turn));
                     ctrlvar++;
                     dataentry[2][1] = 1;
                 } else {
                     b8.setBackgroundResource(R.drawable.o);
                     b8.setClickable(false);
-                    dispTurn.setText("X's Turn");
+                    dispTurn.setText(getString(R.string.x_turn));
                     ctrlvar++;
                     dataentry[2][1] = 10;
                 }
@@ -374,17 +379,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b9.setBackgroundResource(R.drawable.x);
                     b9.setClickable(false);
-                    dispTurn.setText("O's Turn");
+                    dispTurn.setText(getString(R.string.o_turn));
                     ctrlvar++;
                     dataentry[2][2] = 1;
                 } else {
                     b9.setBackgroundResource(R.drawable.o);
                     b9.setClickable(false);
-                    dispTurn.setText("X's Turn");
+                    dispTurn.setText(getString(R.string.x_turn));
                     ctrlvar++;
                     dataentry[2][2] = 10;
                 }
                 break;
+            case R.id.back:
+                MainActivity.this.finish();
         }
         check();
     }

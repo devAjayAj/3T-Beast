@@ -4,103 +4,131 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:baselineAligned="false"
     android:orientation="vertical"
     android:weightSum="5"
     tools:context="com.beast.tictactoe.xo.MainActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:background="#1A237E"
         android:orientation="vertical">
 
-        <Button
-            android:text="Reset Score"
-            android:id="@+id/reset"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:text="O:"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:layout_alignBaseline="@+id/yscore"
-            android:layout_alignBottom="@+id/yscore"
-            android:layout_toLeftOf="@+id/yscore"
-            android:layout_toStartOf="@+id/yscore" />
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/empty"
+                android:src="@drawable/ic_arrow_back_white_24dp" />
 
-        <TextView
-            android:id="@+id/xscore"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:text="0"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:layout_alignBaseline="@+id/textView5"
-            android:layout_alignBottom="@+id/textView5"
-            android:layout_toLeftOf="@+id/textView5"
-            android:layout_toStartOf="@+id/textView5" />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/x"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:text="X:"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:layout_alignBaseline="@+id/xscore"
-            android:layout_alignBottom="@+id/xscore"
-            android:layout_toLeftOf="@+id/xscore"
-            android:layout_toStartOf="@+id/xscore" />
+            <TextView
+                android:id="@+id/xscore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/_0"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/dispTurn"
-            android:textColor="@android:color/white"
-            android:textSize="30dp"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_width="120dp"
-            android:layout_height="35dp"
-            android:textAlignment="center" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/o"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
-        <Button
-            android:text="Play Again!"
-            android:id="@+id/pagain"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_below="@+id/dispTurn"
-            android:layout_centerHorizontal="true" />
 
-        <Button
-            android:text="---"
-            android:id="@+id/button"
-            android:layout_width="40dp"
-            android:layout_height="35dp"
-            android:background="@android:color/transparent"
-            android:textColorLink="@android:color/white"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/textView4" />
+            <TextView
+                android:id="@+id/yscore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/_0"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/yscore"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:text="0"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:layout_alignBottom="@+id/button"
-            android:layout_centerHorizontal="true" />
-    </RelativeLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/reset"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/button_bg_white"
+                android:paddingEnd="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingStart="8dp"
+                android:text="@string/reset_score"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/dispTurn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/pagain"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:background="@drawable/button_bg_white"
+                android:text="@string/play_again"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -132,9 +160,11 @@
                         android:id="@+id/b1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="1dp"
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:background="@drawable/empty"
+                        android:contentDescription="@string/empty"
                         android:scaleType="fitXY" />
 
                     <ImageView
@@ -143,6 +173,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/empty"
+                        android:contentDescription="@string/empty"
                         android:scaleType="fitXY" />
 
                     <ImageView
@@ -150,8 +181,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="1dp"
+                        android:layout_marginStart="1dp"
                         android:layout_weight="1"
                         android:background="@drawable/empty"
+                        android:contentDescription="@string/empty"
                         android:scaleType="fitXY" />
 
                 </LinearLayout>
@@ -168,10 +201,12 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="1dp"
+                        android:layout_marginEnd="1dp"
                         android:layout_marginRight="1dp"
                         android:layout_marginTop="1dp"
                         android:layout_weight="1"
                         android:background="@drawable/empty"
+                        android:contentDescription="@string/empty"
                         android:scaleType="fitXY" />
 
                     <ImageView
@@ -182,6 +217,7 @@
                         android:layout_marginTop="1dp"
                         android:layout_weight="1"
                         android:background="@drawable/empty"
+                        android:contentDescription="@string/empty"
                         android:scaleType="fitXY" />
 
                     <ImageView
@@ -190,9 +226,11 @@
                         android:layout_height="match_parent"
                         android:layout_marginBottom="1dp"
                         android:layout_marginLeft="1dp"
+                        android:layout_marginStart="1dp"
                         android:layout_marginTop="1dp"
                         android:layout_weight="1"
                         android:background="@drawable/empty"
+                        android:contentDescription="@string/empty"
                         android:scaleType="fitXY" />
                 </LinearLayout>
 
@@ -207,9 +245,11 @@
                         android:id="@+id/b7"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="1dp"
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:background="@drawable/empty"
+                        android:contentDescription="@string/empty"
                         android:scaleType="fitXY" />
 
                     <ImageView
@@ -218,6 +258,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/empty"
+                        android:contentDescription="@string/empty"
                         android:scaleType="fitXY" />
 
                     <ImageView
@@ -225,8 +266,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="1dp"
+                        android:layout_marginStart="1dp"
                         android:layout_weight="1"
                         android:background="@drawable/empty"
+                        android:contentDescription="@string/empty"
                         android:scaleType="fitXY" />
 
                 </LinearLayout>

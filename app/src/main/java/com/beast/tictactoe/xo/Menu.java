@@ -15,12 +15,19 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_menu);
         nMode = (Button) findViewById(R.id.normalMode);
         nMode.setOnClickListener(this);
+        bMode = (Button) findViewById(R.id.beast_mode);
+        bMode.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.normalMode:startActivity(new Intent(Menu.this,MainActivity.class));
+            case R.id.normalMode:
+                startActivity(new Intent(Menu.this,MainActivity.class));
+                break;
+            case R.id.beast_mode:
+                startActivity(new Intent(Menu.this, Beast.class));
+                break;
         }
     }
 

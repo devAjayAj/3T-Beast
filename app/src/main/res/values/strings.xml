@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">XO</string>
     <string name="empty" />
+    <string name="beast_mode">Beast Mode</string>
+    <string name="normal_mode">Normal Mode</string>
+    <string name="play_again">Play Again!</string>
+    <string name="reset_score">Reset Score</string>
+    <string name="o">O:</string>
+    <string name="_0">0</string>
+    <string name="x">X:</string>
+    <string name="x_turn">X\'s Turn</string>
+    <string name="o_turn">O\'s Turn</string>
 </resources>
