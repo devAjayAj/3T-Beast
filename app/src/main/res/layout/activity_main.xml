@@ -37,8 +37,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:text="@string/x"
-                android:textColor="#59B0F7"
-                android:textSize="25sp" />
+                android:textColor="@color/xclr"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/xscore"
@@ -48,8 +48,8 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
                 android:text="@string/_0"
-                android:textColor="@android:color/white"
-                android:textSize="25sp" />
+                android:textColor="@color/xclr"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -59,8 +59,8 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="4dp"
                 android:text="@string/o"
-                android:textColor="#F8726A"
-                android:textSize="25sp" />
+                android:textColor="@color/oclr"
+                android:textSize="24sp" />
 
 
             <TextView
@@ -71,8 +71,8 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
                 android:text="@string/_0"
-                android:textColor="@android:color/white"
-                android:textSize="25sp" />
+                android:textColor="@color/oclr"
+                android:textSize="24sp" />
 
             <View
                 android:layout_width="0dp"
@@ -118,10 +118,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textAlignment="center"
                 android:layout_marginTop="50dp"
+                android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/pagain"
@@ -152,7 +152,7 @@
                 android:id="@+id/llayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#757575"
+                android:background="@color/black"
                 android:orientation="vertical"
                 android:weightSum="3">
 

@@ -27,8 +27,8 @@ public class Beast extends AppCompatActivity {
                 cv.setLayoutParams(params);
                 RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(
                         (int) (yb.getMeasuredWidth() / 1.7), (int) (yb.getMeasuredWidth() / 1.7));
-                param.setMargins(dpToPx(36), dpToPx(8), dpToPx(8), dpToPx(0));
-                param.addRule(RelativeLayout.CENTER_VERTICAL);
+                param.setMargins(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
+                param.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                 yb.setLayoutParams(param);
             }
         });
