@@ -17,19 +17,6 @@
         android:orientation="vertical">
 
         <Button
-            android:text="---"
-            android:id="@+id/button"
-            android:layout_width="40dp"
-            android:layout_height="35dp"
-            android:background="@android:color/transparent"
-            android:textColorLink="@android:color/white"
-            android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
             android:text="Reset Score"
             android:id="@+id/reset"
             android:layout_width="120dp"
@@ -92,6 +79,18 @@
             android:layout_below="@+id/dispTurn"
             android:layout_centerHorizontal="true" />
 
+        <Button
+            android:text="---"
+            android:id="@+id/button"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:background="@android:color/transparent"
+            android:textColorLink="@android:color/white"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/textView4" />
+
         <TextView
             android:id="@+id/yscore"
             android:layout_width="60dp"
@@ -100,10 +99,7 @@
             android:textColor="@android:color/white"
             android:textSize="25dp"
             android:layout_alignBottom="@+id/button"
-            android:layout_alignRight="@+id/dispTurn"
-            android:layout_alignEnd="@+id/dispTurn"
-            android:layout_marginRight="20dp"
-            android:layout_marginEnd="20dp" />
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
     <LinearLayout
