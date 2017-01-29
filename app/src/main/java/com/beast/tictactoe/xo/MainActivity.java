@@ -5,8 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,7 +19,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     CardView cv;
     int dataentry[][] = new int[3][3];
     int x = 0, y = 0, c;
-    TextView xs, ys;
+    TextView xs, ys, dispTurn;
+    Button playAgain, reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         xs = (TextView) findViewById(R.id.xscore);
         ys = (TextView) findViewById(R.id.yscore);
+        dispTurn = (TextView) findViewById(R.id.dispTurn);
+        dispTurn.setText("X's Turn");
+        playAgain = (Button) findViewById(R.id.pagain);
+        reset = (Button) findViewById(R.id.reset);
+        playAgain.setVisibility(View.INVISIBLE);
+        playAgain.setClickable(false);
         llayout = (LinearLayout) findViewById(R.id.llayout);
         b1 = (ImageView) findViewById(R.id.b1);
         b2 = (ImageView) findViewById(R.id.b2);
@@ -72,16 +78,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void clear() {
+        String v = x + " ";
+        xs.setText(v);
+        v = y + " ";
+        ys.setText(v);
+        b1.setClickable(false);
+        b2.setClickable(false);
+        b3.setClickable(false);
+        b4.setClickable(false);
+        b5.setClickable(false);
+        b6.setClickable(false);
+        b7.setClickable(false);
+        b8.setClickable(false);
+        b9.setClickable(false);
+        playAgain.setVisibility(View.VISIBLE);
+        playAgain.setClickable(true);
+        dispTurn.setText(" ");
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                xs.setText("0");
+                ys.setText("0");
+                x = 0;
+                y = 0;
+                newGame();
+            }
+        });
+        playAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View a) {
+                newGame();
+            }
+        });
+
+    }
+
+    public void newGame() {
+        dispTurn.setText("X's Turn");
+        playAgain.setClickable(false);
+        playAgain.setVisibility(View.INVISIBLE);
         ctrlvar = 0;
         c = 0;
-        String v = " " + x;
-        xs.setText(v);
-        v = " " + y;
         for (int i = 0; i <= 2; i++)
             for (int j = 0; j <= 2; j++) {
                 dataentry[i][j] = 0;
             }
-        ys.setText(v);
         b1.setBackgroundResource(R.drawable.empty);
         b1.setClickable(true);
         b2.setBackgroundResource(R.drawable.empty);
@@ -213,11 +254,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b1.setBackgroundResource(R.drawable.x);
                     b1.setClickable(false);
+                    dispTurn.setText("O's Turn");
                     ctrlvar++;
                     dataentry[0][0] = 1;
                 } else {
                     b1.setBackgroundResource(R.drawable.o);
                     b1.setClickable(false);
+                    dispTurn.setText("X's Turn");
                     ctrlvar++;
                     dataentry[0][0] = 10;
                 }
@@ -226,11 +269,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b2.setBackgroundResource(R.drawable.x);
                     b2.setClickable(false);
+                    dispTurn.setText("O's Turn");
                     ctrlvar++;
                     dataentry[0][1] = 1;
                 } else {
                     b2.setBackgroundResource(R.drawable.o);
                     b2.setClickable(false);
+                    dispTurn.setText("X's Turn");
                     ctrlvar++;
                     dataentry[0][1] = 10;
                 }
@@ -239,11 +284,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b3.setBackgroundResource(R.drawable.x);
                     b3.setClickable(false);
+                    dispTurn.setText("O's Turn");
                     ctrlvar++;
                     dataentry[0][2] = 1;
                 } else {
                     b3.setBackgroundResource(R.drawable.o);
                     b3.setClickable(false);
+                    dispTurn.setText("X's Turn");
                     ctrlvar++;
                     dataentry[0][2] = 10;
                 }
@@ -252,11 +299,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b4.setBackgroundResource(R.drawable.x);
                     b4.setClickable(false);
+                    dispTurn.setText("O's Turn");
                     ctrlvar++;
                     dataentry[1][0] = 1;
                 } else {
                     b4.setBackgroundResource(R.drawable.o);
                     b4.setClickable(false);
+                    dispTurn.setText("X's Turn");
                     ctrlvar++;
                     dataentry[1][0] = 10;
                 }
@@ -265,11 +314,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b5.setBackgroundResource(R.drawable.x);
                     b5.setClickable(false);
+                    dispTurn.setText("O's Turn");
                     ctrlvar++;
                     dataentry[1][1] = 1;
                 } else {
                     b5.setBackgroundResource(R.drawable.o);
                     b5.setClickable(false);
+                    dispTurn.setText("X's Turn");
                     ctrlvar++;
                     dataentry[1][1] = 10;
                 }
@@ -278,11 +329,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b6.setBackgroundResource(R.drawable.x);
                     b6.setClickable(false);
+                    dispTurn.setText("O's Turn");
                     ctrlvar++;
                     dataentry[1][2] = 1;
                 } else {
                     b6.setBackgroundResource(R.drawable.o);
                     b6.setClickable(false);
+                    dispTurn.setText("X's Turn");
                     ctrlvar++;
                     dataentry[1][2] = 10;
                 }
@@ -291,11 +344,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b7.setBackgroundResource(R.drawable.x);
                     b7.setClickable(false);
+                    dispTurn.setText("O's Turn");
                     ctrlvar++;
                     dataentry[2][0] = 1;
                 } else {
                     b7.setBackgroundResource(R.drawable.o);
                     b7.setClickable(false);
+                    dispTurn.setText("X's Turn");
                     ctrlvar++;
                     dataentry[2][0] = 10;
                 }
@@ -304,11 +359,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b8.setBackgroundResource(R.drawable.x);
                     b8.setClickable(false);
+                    dispTurn.setText("O's Turn");
                     ctrlvar++;
                     dataentry[2][1] = 1;
                 } else {
                     b8.setBackgroundResource(R.drawable.o);
                     b8.setClickable(false);
+                    dispTurn.setText("X's Turn");
                     ctrlvar++;
                     dataentry[2][1] = 10;
                 }
@@ -317,11 +374,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (ctrlvar % 2 == 0) {
                     b9.setBackgroundResource(R.drawable.x);
                     b9.setClickable(false);
+                    dispTurn.setText("O's Turn");
                     ctrlvar++;
                     dataentry[2][2] = 1;
                 } else {
                     b9.setBackgroundResource(R.drawable.o);
                     b9.setClickable(false);
+                    dispTurn.setText("X's Turn");
                     ctrlvar++;
                     dataentry[2][2] = 10;
                 }

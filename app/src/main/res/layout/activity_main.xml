@@ -16,51 +16,94 @@
         android:background="#1A237E"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+        <Button
+            android:text="---"
+            android:id="@+id/button"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:background="@android:color/transparent"
+            android:textColorLink="@android:color/white"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="35dp"
-            android:layout_marginStart="35dp"
-            android:text="X:"
-            android:textColor="@android:color/white"
-            android:textSize="25dp" />
+            android:layout_alignParentStart="true" />
 
-        <TextView
-            android:id="@+id/xscore"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
+        <Button
+            android:text="Reset Score"
+            android:id="@+id/reset"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/textView4"
-            android:layout_toRightOf="@+id/textView4"
-            android:text="0"
-            android:textColor="@android:color/white"
-            android:textSize="25dp" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/xscore"
-            android:layout_toRightOf="@+id/xscore"
             android:text="O:"
             android:textColor="@android:color/white"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:layout_alignBaseline="@+id/yscore"
+            android:layout_alignBottom="@+id/yscore"
+            android:layout_toLeftOf="@+id/yscore"
+            android:layout_toStartOf="@+id/yscore" />
+
+        <TextView
+            android:id="@+id/xscore"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:text="0"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:layout_alignBaseline="@+id/textView5"
+            android:layout_alignBottom="@+id/textView5"
+            android:layout_toLeftOf="@+id/textView5"
+            android:layout_toStartOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="X:"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:layout_alignBaseline="@+id/xscore"
+            android:layout_alignBottom="@+id/xscore"
+            android:layout_toLeftOf="@+id/xscore"
+            android:layout_toStartOf="@+id/xscore" />
+
+        <TextView
+            android:id="@+id/dispTurn"
+            android:textColor="@android:color/white"
+            android:textSize="30dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:textAlignment="center" />
+
+        <Button
+            android:text="Play Again!"
+            android:id="@+id/pagain"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/dispTurn"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:id="@+id/yscore"
             android:layout_width="60dp"
             android:layout_height="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/textView5"
-            android:layout_toRightOf="@+id/textView5"
             android:text="0"
             android:textColor="@android:color/white"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:layout_alignBottom="@+id/button"
+            android:layout_alignRight="@+id/dispTurn"
+            android:layout_alignEnd="@+id/dispTurn"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp" />
     </RelativeLayout>
 
     <LinearLayout
