@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ys = (TextView) findViewById(R.id.yscore);
         dispTurn = (TextView) findViewById(R.id.dispTurn);
         winner = (TextView) findViewById(R.id.winner);
-        dispTurn.setText("X's Turn");
+        SpannableString spantext = new SpannableString("X's Turn");
+        dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
         playAgain = (Button) findViewById(R.id.pagain);
         reset = (Button) findViewById(R.id.reset);
         playAgain.setVisibility(View.INVISIBLE);
