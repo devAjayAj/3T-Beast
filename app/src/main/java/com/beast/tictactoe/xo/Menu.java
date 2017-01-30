@@ -1,14 +1,22 @@
 package com.beast.tictactoe.xo;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+
+import com.beast.tictactoe.xo.Extras.M;
 
 public class Menu extends AppCompatActivity implements View.OnClickListener {
 
     Button nMode, bMode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,12 +29,33 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.normalMode:
-                startActivity(new Intent(Menu.this,MainActivity.class));
+                startActivity(new Intent(Menu.this, MainActivity.class));
                 break;
             case R.id.beast_mode:
-                startActivity(new Intent(Menu.this, Beast.class));
+                String names[] = {"Local", "Online"};
+                AlertDialog.Builder mode = new AlertDialog.Builder(Menu.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View convertView = inflater.inflate(R.layout.mode_of_beast, null);
+                mode.setView(convertView);
+                ListView lv = (ListView) convertView.findViewById(R.id.mode);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, names);
+                lv.setAdapter(adapter);
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        switch (i) {
+                            case 0:
+                                startActivity(new Intent(Menu.this, Beast.class));
+                                break;
+                            case 1:
+                                M.tl(getApplicationContext(),"Dont rush! first complete Local!!");
+                                break;
+                        }
+                    }
+                });
+                mode.show();
                 break;
         }
     }

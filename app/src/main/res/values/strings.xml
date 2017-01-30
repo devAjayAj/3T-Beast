@@ -9,5 +9,7 @@
     <string name="o">O:</string>
     <string name="_0">0</string>
     <string name="x">X:</string>
+    <string name="x_turn">X Turn</string>
+    <string name="select_info">U can now select one of these bigger boxes bla bla bla</string>
 
 </resources>
