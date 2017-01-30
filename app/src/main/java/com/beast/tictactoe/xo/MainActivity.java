@@ -1,35 +1,31 @@
 package com.beast.tictactoe.xo;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.beast.tictactoe.xo.Extras.M;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    int ctrlvar;
-    ImageView b1, b2, b3, b4, b5, b6, b7, b8, b9;
+    ImageView b1, b2, b3, b4, b5, b6, b7, b8, b9, back;
     LinearLayout llayout;
     CardView cv;
-    int dataentry[][] = new int[3][3];
-    int x = 0, y = 0, c;
-    TextView xs, ys, dispTurn;
+    int dataentry[][] = new int[3][3], x = 0, y = 0, c, gameover, ctrlvar;
+    TextView xs, ys, dispTurn, winner;
     Button playAgain, reset;
-    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         ctrlvar = 0;
         for (int i = 0; i <= 2; i++)
@@ -39,7 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         xs = (TextView) findViewById(R.id.xscore);
         ys = (TextView) findViewById(R.id.yscore);
         dispTurn = (TextView) findViewById(R.id.dispTurn);
-        dispTurn.setText(getString(R.string.x_turn));
+        winner = (TextView) findViewById(R.id.winner);
+        dispTurn.setText("X's Turn");
         playAgain = (Button) findViewById(R.id.pagain);
         reset = (Button) findViewById(R.id.reset);
         playAgain.setVisibility(View.INVISIBLE);
@@ -74,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 cv.setLayoutParams(params);
             }
         });
-        //llayout.setLayoutParams(new LinearLayout.LayoutParams(sqrSize, sqrSize));
     }
 
     private int dpToPx(int dp) {
@@ -82,20 +78,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 
+    public void clickable(Boolean val) {
+        b1.setClickable(val);
+        b2.setClickable(val);
+        b3.setClickable(val);
+        b4.setClickable(val);
+        b5.setClickable(val);
+        b6.setClickable(val);
+        b7.setClickable(val);
+        b8.setClickable(val);
+        b9.setClickable(val);
+    }
+
     public void clear() {
         String v = x + " ";
         xs.setText(v);
         v = y + " ";
         ys.setText(v);
-        b1.setClickable(false);
-        b2.setClickable(false);
-        b3.setClickable(false);
-        b4.setClickable(false);
-        b5.setClickable(false);
-        b6.setClickable(false);
-        b7.setClickable(false);
-        b8.setClickable(false);
-        b9.setClickable(false);
+        clickable(false);
         playAgain.setVisibility(View.VISIBLE);
         playAgain.setClickable(true);
         dispTurn.setText(" ");
@@ -119,7 +119,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void newGame() {
-        dispTurn.setText(getString(R.string.x_turn));
+        SpannableString spantext = new SpannableString("X's Turn");
+        dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
+        winner.setText(" ");
         playAgain.setClickable(false);
         playAgain.setVisibility(View.INVISIBLE);
         ctrlvar = 0;
@@ -129,126 +131,119 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dataentry[i][j] = 0;
             }
         b1.setBackgroundResource(R.drawable.empty);
-        b1.setClickable(true);
         b2.setBackgroundResource(R.drawable.empty);
-        b2.setClickable(true);
         b3.setBackgroundResource(R.drawable.empty);
-        b3.setClickable(true);
         b4.setBackgroundResource(R.drawable.empty);
-        b4.setClickable(true);
         b5.setBackgroundResource(R.drawable.empty);
-        b5.setClickable(true);
         b6.setBackgroundResource(R.drawable.empty);
-        b6.setClickable(true);
         b7.setBackgroundResource(R.drawable.empty);
-        b7.setClickable(true);
         b8.setBackgroundResource(R.drawable.empty);
-        b8.setClickable(true);
         b9.setBackgroundResource(R.drawable.empty);
-        b9.setClickable(true);
+        clickable(true);
+    }
+
+    public void declare(ImageView bb1, ImageView bb2, ImageView bb3, int check) {
+        if (check == 1) {
+            SpannableString spantext = new SpannableString("X wins!");
+            spantext.setSpan(new ForegroundColorSpan(Color.rgb(89, 176, 247)), 0, 1, 0);
+            spantext.setSpan(new ForegroundColorSpan(Color.rgb(89, 176, 247)), 6, 7, 0);
+            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 1, 0);
+            winner.setText(spantext, TextView.BufferType.SPANNABLE);
+            bb1.setBackgroundResource(R.drawable.xwin);
+            bb2.setBackgroundResource(R.drawable.xwin);
+            bb3.setBackgroundResource(R.drawable.xwin);
+            gameover = 1;
+            x++;
+            clear();
+        } else if (check == 0) {
+            SpannableString spantext = new SpannableString("O wins!");
+            spantext.setSpan(new ForegroundColorSpan(Color.rgb(248, 114, 106)), 0, 1, 0);
+            spantext.setSpan(new ForegroundColorSpan(Color.rgb(248, 114, 106)), 6, 7, 0);
+            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 1, 0);
+            winner.setText(spantext, TextView.BufferType.SPANNABLE);
+            bb1.setBackgroundResource(R.drawable.owin);
+            bb2.setBackgroundResource(R.drawable.owin);
+            bb3.setBackgroundResource(R.drawable.owin);
+            gameover = 1;
+            y++;
+            clear();
+        }
     }
 
     public void check() {
         c = (dataentry[0][0] + dataentry[0][1] + dataentry[0][2]);
-        int gameover = 0;
+        gameover = 0;
         if (c == 3) {
-            M.Sl(findViewById(android.R.id.content),"X Wins!");
-            gameover = 1;
-            x++;
-            clear();
+//            M.Sl(findViewById(android.R.id.content),"X Wins!");
+            declare(b1, b2, b3, 1);
         } else if (c == 30) {
-            Toast.makeText(MainActivity.this, "O wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            y++;
-            clear();
+//            Toast.makeText(MainActivity.this, "O wins", Toast.LENGTH_SHORT).show();
+            declare(b1, b2, b3, 0);
         }
         c = (dataentry[1][0] + dataentry[1][1] + dataentry[1][2]);
         if (c == 3) {
-            M.Ss(findViewById(android.R.id.content), "X Wins!");
-            gameover = 1;
-            x++;
-            clear();
+            declare(b4, b5, b6, 1);
         } else if (c == 30) {
-            Toast.makeText(MainActivity.this, "O wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            y++;
-            clear();
+            declare(b4, b5, b6, 0);
         }
         c = (dataentry[2][0] + dataentry[2][1] + dataentry[2][2]);
         if (c == 3) {
-            M.ts(MainActivity.this, "X wins");
-            gameover = 1;
-            x++;
-            clear();
+            declare(b7, b8, b9, 1);
         } else if (c == 30) {
-            Toast.makeText(MainActivity.this, "O wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            y++;
-            clear();
+            declare(b7, b8, b9, 0);
         }
         c = (dataentry[0][0] + dataentry[1][0] + dataentry[2][0]);
         if (c == 3) {
-            Toast.makeText(MainActivity.this, "X wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            x++;
-            clear();
+            declare(b1, b4, b7, 1);
         } else if (c == 30) {
-            Toast.makeText(MainActivity.this, "O wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            y++;
-            clear();
+            declare(b1, b4, b7, 0);
         }
         c = (dataentry[0][1] + dataentry[1][1] + dataentry[2][1]);
         if (c == 3) {
-            Toast.makeText(MainActivity.this, "X wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            x++;
-            clear();
+            declare(b2, b5, b8, 1);
         } else if (c == 30) {
-            Toast.makeText(MainActivity.this, "O wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            y++;
-            clear();
+            declare(b2, b5, b8, 0);
         }
         c = (dataentry[0][2] + dataentry[1][2] + dataentry[2][2]);
         if (c == 3) {
-            Toast.makeText(MainActivity.this, "X wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            x++;
-            clear();
+            declare(b3, b6, b9, 1);
         } else if (c == 30) {
-            Toast.makeText(MainActivity.this, "O wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            y++;
-            clear();
+            declare(b3, b6, b9, 0);
         }
         c = (dataentry[0][0] + dataentry[1][1] + dataentry[2][2]);
         if (c == 3) {
-            Toast.makeText(MainActivity.this, "X wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            x++;
-            clear();
+            declare(b1, b5, b9, 1);
         } else if (c == 30) {
-            Toast.makeText(MainActivity.this, "O wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            y++;
-            clear();
+            declare(b1, b5, b9, 0);
         }
         c = (dataentry[0][2] + dataentry[1][1] + dataentry[2][0]);
         if (c == 3) {
-            Toast.makeText(MainActivity.this, "X wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            x++;
-            clear();
+            declare(b3, b5, b7, 1);
         } else if (c == 30) {
-            Toast.makeText(MainActivity.this, "O wins", Toast.LENGTH_SHORT).show();
-            gameover = 1;
-            y++;
-            clear();
+            declare(b3, b5, b7, 0);
         }
         if (ctrlvar == 9 && gameover == 0) {
-            Toast.makeText(MainActivity.this, "Draw! Play Again", Toast.LENGTH_SHORT).show();
+            SpannableString spantext = new SpannableString("DRAW!");
+            winner.setText(spantext, TextView.BufferType.SPANNABLE);
             clear();
+        }
+    }
+
+    public void displayTurn(ImageView bb1, int a, int b, int check) {
+        if (check == 1) {
+            bb1.setBackgroundResource(R.drawable.x);
+            bb1.setClickable(false);
+            ctrlvar++;
+            dataentry[a][b] = 1;
+            SpannableString spantext = new SpannableString("O's Turn");
+            dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
+        } else if (check == 0) {
+            bb1.setBackgroundResource(R.drawable.o);
+            bb1.setClickable(false);
+            ctrlvar++;
+            dataentry[a][b] = 10;
+            SpannableString spantext = new SpannableString("X's Turn");
+            dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
         }
     }
 
@@ -257,137 +252,65 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.b1:
                 if (ctrlvar % 2 == 0) {
-                    b1.setBackgroundResource(R.drawable.x);
-                    b1.setClickable(false);
-                    dispTurn.setText(getString(R.string.o_turn));
-                    ctrlvar++;
-                    dataentry[0][0] = 1;
+                    displayTurn(b1, 0, 0, 1);
                 } else {
-                    b1.setBackgroundResource(R.drawable.o);
-                    b1.setClickable(false);
-                    dispTurn.setText(getString(R.string.x_turn));
-                    ctrlvar++;
-                    dataentry[0][0] = 10;
+                    displayTurn(b1, 0, 0, 0);
                 }
                 break;
             case R.id.b2:
                 if (ctrlvar % 2 == 0) {
-                    b2.setBackgroundResource(R.drawable.x);
-                    b2.setClickable(false);
-                    dispTurn.setText(getString(R.string.o_turn));
-                    ctrlvar++;
-                    dataentry[0][1] = 1;
+                    displayTurn(b2, 0, 1, 1);
                 } else {
-                    b2.setBackgroundResource(R.drawable.o);
-                    b2.setClickable(false);
-                    dispTurn.setText(getString(R.string.x_turn));
-                    ctrlvar++;
-                    dataentry[0][1] = 10;
+                    displayTurn(b2, 0, 1, 0);
                 }
                 break;
             case R.id.b3:
                 if (ctrlvar % 2 == 0) {
-                    b3.setBackgroundResource(R.drawable.x);
-                    b3.setClickable(false);
-                    dispTurn.setText(getString(R.string.o_turn));
-                    ctrlvar++;
-                    dataentry[0][2] = 1;
+                    displayTurn(b3, 0, 2, 1);
                 } else {
-                    b3.setBackgroundResource(R.drawable.o);
-                    b3.setClickable(false);
-                    dispTurn.setText(getString(R.string.x_turn));
-                    ctrlvar++;
-                    dataentry[0][2] = 10;
+                    displayTurn(b3, 0, 2, 0);
                 }
                 break;
             case R.id.b4:
                 if (ctrlvar % 2 == 0) {
-                    b4.setBackgroundResource(R.drawable.x);
-                    b4.setClickable(false);
-                    dispTurn.setText(getString(R.string.o_turn));
-                    ctrlvar++;
-                    dataentry[1][0] = 1;
+                    displayTurn(b4, 1, 0, 1);
                 } else {
-                    b4.setBackgroundResource(R.drawable.o);
-                    b4.setClickable(false);
-                    dispTurn.setText(getString(R.string.x_turn));
-                    ctrlvar++;
-                    dataentry[1][0] = 10;
+                    displayTurn(b4, 1, 0, 0);
                 }
                 break;
             case R.id.b5:
                 if (ctrlvar % 2 == 0) {
-                    b5.setBackgroundResource(R.drawable.x);
-                    b5.setClickable(false);
-                    dispTurn.setText(getString(R.string.o_turn));
-                    ctrlvar++;
-                    dataentry[1][1] = 1;
+                    displayTurn(b5, 1, 1, 1);
                 } else {
-                    b5.setBackgroundResource(R.drawable.o);
-                    b5.setClickable(false);
-                    dispTurn.setText(getString(R.string.x_turn));
-                    ctrlvar++;
-                    dataentry[1][1] = 10;
+                    displayTurn(b5, 1, 1, 0);
                 }
                 break;
             case R.id.b6:
                 if (ctrlvar % 2 == 0) {
-                    b6.setBackgroundResource(R.drawable.x);
-                    b6.setClickable(false);
-                    dispTurn.setText(getString(R.string.o_turn));
-                    ctrlvar++;
-                    dataentry[1][2] = 1;
+                    displayTurn(b6, 1, 2, 1);
                 } else {
-                    b6.setBackgroundResource(R.drawable.o);
-                    b6.setClickable(false);
-                    dispTurn.setText(getString(R.string.x_turn));
-                    ctrlvar++;
-                    dataentry[1][2] = 10;
+                    displayTurn(b6, 1, 2, 0);
                 }
                 break;
             case R.id.b7:
                 if (ctrlvar % 2 == 0) {
-                    b7.setBackgroundResource(R.drawable.x);
-                    b7.setClickable(false);
-                    dispTurn.setText(getString(R.string.o_turn));
-                    ctrlvar++;
-                    dataentry[2][0] = 1;
+                    displayTurn(b7, 2, 0, 1);
                 } else {
-                    b7.setBackgroundResource(R.drawable.o);
-                    b7.setClickable(false);
-                    dispTurn.setText(getString(R.string.x_turn));
-                    ctrlvar++;
-                    dataentry[2][0] = 10;
+                    displayTurn(b7, 2, 0, 0);
                 }
                 break;
             case R.id.b8:
                 if (ctrlvar % 2 == 0) {
-                    b8.setBackgroundResource(R.drawable.x);
-                    b8.setClickable(false);
-                    dispTurn.setText(getString(R.string.o_turn));
-                    ctrlvar++;
-                    dataentry[2][1] = 1;
+                    displayTurn(b8, 2, 1, 1);
                 } else {
-                    b8.setBackgroundResource(R.drawable.o);
-                    b8.setClickable(false);
-                    dispTurn.setText(getString(R.string.x_turn));
-                    ctrlvar++;
-                    dataentry[2][1] = 10;
+                    displayTurn(b8, 2, 1, 0);
                 }
                 break;
             case R.id.b9:
                 if (ctrlvar % 2 == 0) {
-                    b9.setBackgroundResource(R.drawable.x);
-                    b9.setClickable(false);
-                    dispTurn.setText(getString(R.string.o_turn));
-                    ctrlvar++;
-                    dataentry[2][2] = 1;
+                    displayTurn(b9, 2, 2, 1);
                 } else {
-                    b9.setBackgroundResource(R.drawable.o);
-                    b9.setClickable(false);
-                    dispTurn.setText(getString(R.string.x_turn));
-                    ctrlvar++;
-                    dataentry[2][2] = 10;
+                    displayTurn(b9, 2, 2, 0);
                 }
                 break;
             case R.id.back:
