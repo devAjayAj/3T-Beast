@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dispTurn = (TextView) findViewById(R.id.dispTurn);
         winner = (TextView) findViewById(R.id.winner);
         SpannableString spantext = new SpannableString("X's Turn");
+        spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
         dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
         playAgain = (Button) findViewById(R.id.pagain);
         reset = (Button) findViewById(R.id.reset);
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void newGame() {
         SpannableString spantext = new SpannableString("X's Turn");
+        spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
         dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
         winner.setText(" ");
         playAgain.setClickable(false);
@@ -146,8 +148,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void declare(ImageView bb1, ImageView bb2, ImageView bb3, int check) {
         if (check == 1) {
             SpannableString spantext = new SpannableString("X wins!");
-            spantext.setSpan(new ForegroundColorSpan(Color.rgb(89, 176, 247)), 0, 1, 0);
-            spantext.setSpan(new ForegroundColorSpan(Color.rgb(89, 176, 247)), 6, 7, 0);
             spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 1, 0);
             winner.setText(spantext, TextView.BufferType.SPANNABLE);
             bb1.setBackgroundResource(R.drawable.xwin);
@@ -158,8 +158,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             clear();
         } else if (check == 0) {
             SpannableString spantext = new SpannableString("O wins!");
-            spantext.setSpan(new ForegroundColorSpan(Color.rgb(248, 114, 106)), 0, 1, 0);
-            spantext.setSpan(new ForegroundColorSpan(Color.rgb(248, 114, 106)), 6, 7, 0);
+            /*spantext.setSpan(new ForegroundColorSpan(Color.rgb(248, 114, 106)), 0, 1, 0);
+            spantext.setSpan(new ForegroundColorSpan(Color.rgb(248, 114, 106)), 6, 7, 0);*/
             spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 1, 0);
             winner.setText(spantext, TextView.BufferType.SPANNABLE);
             bb1.setBackgroundResource(R.drawable.owin);
@@ -237,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ctrlvar++;
             dataentry[a][b] = 1;
             SpannableString spantext = new SpannableString("O's Turn");
+            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
             dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
         } else if (check == 0) {
             bb1.setBackgroundResource(R.drawable.o);
@@ -244,6 +245,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ctrlvar++;
             dataentry[a][b] = 10;
             SpannableString spantext = new SpannableString("X's Turn");
+            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
             dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
         }
     }
