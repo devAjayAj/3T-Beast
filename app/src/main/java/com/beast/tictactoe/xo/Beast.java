@@ -20,7 +20,7 @@ public class Beast extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_beast);
 
         cv = (CardView) findViewById(R.id.xh);
-        yb = (CardView) findViewById(R.id.yb);
+        yb = (CardView) findViewById(R.id.nineParent);
         back = (ImageView) findViewById(R.id.back);
         back.setOnClickListener(this);
 

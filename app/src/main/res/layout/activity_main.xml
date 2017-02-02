@@ -8,7 +8,7 @@
     android:baselineAligned="false"
     android:orientation="vertical"
     android:weightSum="5"
-    tools:context="com.beast.tictactoe.xo.MainActivity">
+    tools:context="com.beast.tictactoe.xo.Normal">
 
     <LinearLayout
         android:layout_width="match_parent"

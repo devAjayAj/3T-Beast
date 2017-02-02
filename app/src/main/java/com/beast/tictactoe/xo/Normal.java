@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class Normal extends AppCompatActivity implements View.OnClickListener {
 
     ImageView b1, b2, b3, b4, b5, b6, b7, b8, b9, back;
     LinearLayout llayout;
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            M.Sl(findViewById(android.R.id.content),"X Wins!");
             declare(b1, b2, b3, 1);
         } else if (c == 30) {
-//            Toast.makeText(MainActivity.this, "O wins", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(Normal.this, "O wins", Toast.LENGTH_SHORT).show();
             declare(b1, b2, b3, 0);
         }
         c = (dataentry[1][0] + dataentry[1][1] + dataentry[1][2]);
@@ -315,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.back:
-                MainActivity.this.finish();
+                Normal.this.finish();
         }
         check();
     }
