@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".Beast" />
         <activity android:name=".Normal" />
+        <activity android:name=".Main2Activity"></activity>
     </application>
 
 </manifest>
