@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class Main2Activity extends AppCompatActivity {
     CardView s;
+    int player = 1;
     int[] nine = new int[81];
     int[] three = new int[9];
     int imageViewIds[] = {
@@ -51,6 +53,14 @@ public class Main2Activity extends AppCompatActivity {
     public void id(View v) {
         String idName = v.getResources().getResourceEntryName(v.getId());
         String idNum = idName.replaceAll("[^0-9]", "");
+        int place = Integer.parseInt(idNum);
+        place--;
+        if(player == 1){
+            player = 0;
+            place = 24;
+            ImageView temp = (ImageView) findViewById(imageViewIds[place]);
+            temp.setImageResource(R.drawable.x);
+        }
         sendId(idNum);
     }
 
