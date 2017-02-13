@@ -254,7 +254,8 @@
                                     android:layout_weight="1"
                                     android:contentDescription="@string/empty"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/empty" />
+                                    android:src="@drawable/empty"
+                                    android:onClick="id"/>
 
                                 <ImageView
                                     android:id="@+id/nineb11"
@@ -406,7 +407,8 @@
                                     android:layout_weight="1"
                                     android:contentDescription="@string/empty"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/empty" />
+                                    android:src="@drawable/empty"
+                                    android:onClick="id"/>
 
                                 <ImageView
                                     android:id="@+id/nineb20"
@@ -710,7 +712,8 @@
                                     android:layout_weight="1"
                                     android:contentDescription="@string/empty"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/empty" />
+                                    android:src="@drawable/empty"
+                                    android:onClick="id"/>
 
                                 <ImageView
                                     android:id="@+id/nineb38"
@@ -1302,7 +1305,8 @@
                                     android:layout_weight="1"
                                     android:contentDescription="@string/empty"
                                     android:scaleType="centerCrop"
-                                    android:src="@drawable/empty" />
+                                    android:src="@drawable/empty"
+                                    android:onClick="id"/>
 
                                 <ImageView
                                     android:id="@+id/nineb74"

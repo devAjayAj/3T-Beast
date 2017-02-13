@@ -43,6 +43,11 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
+        for(int i = 2; i < 9; i++){
+            LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
+            temp.setVisibility(View.VISIBLE);
+        }
+
     }
 
     private int dpToPx(int dp) {
@@ -56,12 +61,10 @@ public class Main2Activity extends AppCompatActivity {
         int place = Integer.parseInt(idNum);
         place--;
         if(player == 1){
-            player = 0;
-            place = 35;
             ImageView temp = (ImageView) findViewById(imageViewIds[place]);
             temp.setImageResource(R.drawable.x);
         }
-        sendId(idNum);
+//        sendId(idNum);
     }
 
     public void sendId(String idNumber) {
