@@ -24,7 +24,7 @@ public class Normal extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.normal);
         ctrlvar = 0;
         for (int i = 0; i <= 2; i++)
             for (int j = 0; j <= 2; j++) {
@@ -176,7 +176,7 @@ public class Normal extends AppCompatActivity implements View.OnClickListener {
 //            M.Sl(findViewById(android.R.id.content),"X Wins!");
             declare(b1, b2, b3, 1);
         } else if (c == 30) {
-//            Toast.makeText(Normal.this, "O wins", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(normal.this, "O wins", Toast.LENGTH_SHORT).show();
             declare(b1, b2, b3, 0);
         }
         c = (dataentry[1][0] + dataentry[1][1] + dataentry[1][2]);

@@ -57,7 +57,7 @@ public class Main2Activity extends AppCompatActivity {
         place--;
         if(player == 1){
             player = 0;
-            place = 24;
+            place = 35;
             ImageView temp = (ImageView) findViewById(imageViewIds[place]);
             temp.setImageResource(R.drawable.x);
         }
