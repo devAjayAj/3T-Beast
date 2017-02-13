@@ -14,7 +14,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        startActivity(new Intent(Menu.this,Main2Activity.class));
+        startActivity(new Intent(Menu.this,Main3Activity.class));
         nMode = (Button) findViewById(R.id.normalMode);
         nMode.setOnClickListener(this);
         bMode = (Button) findViewById(R.id.beast_mode);

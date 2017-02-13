@@ -49,8 +49,8 @@ public class Main3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
         for (int i = 0; i < 9; i++) {
-            LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
-            temp.setVisibility(View.VISIBLE);
+                LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
+                temp.setVisibility(View.VISIBLE);
         }
     }
 
@@ -72,17 +72,16 @@ public class Main3Activity extends AppCompatActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void onclickBig(View v) {
         String idName = v.getResources().getResourceEntryName(v.getId());
         String a = idName.replaceAll("[^0-9]", "");
         int bigIdNum = Integer.parseInt(a);
         int smallBlocker = bigIdNum * 9;
-        for (int i = 0; i < 9; i++) {
+        for (int i = 1; i < 2; i++) {
             LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
-            temp.setVisibility(View.GONE);
+            temp.setVisibility(View.INVISIBLE);
         }
-        //Block all
+        /*//Block all
         for (int i = 0; i < smallBlocker; i++) {
             ImageView temp = (ImageView) findViewById(smallImageViewIds[i]);
             temp.setClickable(false);
@@ -107,7 +106,7 @@ public class Main3Activity extends AppCompatActivity {
             }
 
 
-        }
+        }*/
     }
 
     public void openChoice() {

@@ -358,7 +358,8 @@
                             android:layout_marginBottom="1.5dp"
                             android:layout_marginLeft="1.5dp"
                             android:id="@+id/nineBig1"
-                            android:onClick="onclickBig"></LinearLayout>
+                            android:onClick="onclickBig">
+                        </LinearLayout>
 
                     </FrameLayout>
 
