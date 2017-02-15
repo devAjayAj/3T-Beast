@@ -260,7 +260,7 @@
                         android:layout_marginRight="1.5dp"
                         android:layout_marginBottom="1.5dp"
                         android:id="@+id/nineBig0"
-                        android:tag="0"></LinearLayout>
+                        android:onClick="onclickBig"/>
 
                     </FrameLayout>
 
@@ -356,6 +356,7 @@
                                 android:layout_marginLeft="0.5dp"
                                 android:layout_marginRight="1.5dp"
                                 android:layout_marginBottom="0.5dp"
+                                android:layout_marginTop="0.5dp"
                                 app:srcCompat="@drawable/empty"
                                 android:scaleType="fitXY"
                                 android:onClick="onclick"
@@ -421,8 +422,8 @@
                             android:layout_marginRight="1.5dp"
                             android:layout_marginBottom="1.5dp"
                             android:layout_marginLeft="1.5dp"
-                            android:id="@+id/nineBig1">
-                        </LinearLayout>
+                            android:id="@+id/nineBig1"
+                            android:onClick="onclickBig"/>
 
                     </FrameLayout>
 
@@ -580,7 +581,8 @@
                             android:orientation="horizontal"
                             android:layout_marginLeft="1.5dp"
                             android:layout_marginBottom="1.5dp"
-                            android:id="@+id/nineBig2"></LinearLayout>
+                            android:id="@+id/nineBig2"
+                            android:onClick="onclickBig"/>
 
                     </FrameLayout>
 
@@ -751,7 +753,8 @@
                         android:layout_marginRight="1.5dp"
                         android:layout_marginBottom="1.5dp"
                         android:layout_marginTop="1.5dp"
-                        android:id="@+id/nineBig3"></LinearLayout>
+                        android:id="@+id/nineBig3"
+                        android:onClick="onclickBig"/>
 
                 </FrameLayout>
 
@@ -914,7 +917,8 @@
                             android:visibility="gone"
                             android:orientation="horizontal"
                             android:layout_margin="1.5dp"
-                            android:id="@+id/nineBig4"></LinearLayout>
+                            android:id="@+id/nineBig4"
+                            android:onClick="onclickBig"/>
 
                     </FrameLayout>
 
@@ -1076,7 +1080,8 @@
                             android:layout_marginLeft="1.5dp"
                             android:layout_marginBottom="1.5dp"
                             android:layout_marginTop="1.5dp"
-                            android:id="@+id/nineBig5"></LinearLayout>
+                            android:id="@+id/nineBig5"
+                            android:onClick="onclickBig"/>
 
                     </FrameLayout>
 
@@ -1243,7 +1248,8 @@
                             android:orientation="horizontal"
                             android:layout_marginRight="1.5dp"
                             android:layout_marginTop="1.5dp"
-                            android:id="@+id/nineBig6"></LinearLayout>
+                            android:id="@+id/nineBig6"
+                            android:onClick="onclickBig"/>
 
                     </FrameLayout>
 
@@ -1405,7 +1411,8 @@
                             android:layout_marginRight="1.5dp"
                             android:layout_marginLeft="1.5dp"
                             android:layout_marginTop="1.5dp"
-                            android:id="@+id/nineBig7"></LinearLayout>
+                            android:id="@+id/nineBig7"
+                            android:onClick="onclickBig"/>
 
                     </FrameLayout>
 
@@ -1563,7 +1570,8 @@
                             android:orientation="horizontal"
                             android:layout_marginTop="1.5dp"
                             android:layout_marginLeft="1.5dp"
-                            android:id="@+id/nineBig8"></LinearLayout>
+                            android:id="@+id/nineBig8"
+                            android:onClick="onclickBig"/>
 
                     </FrameLayout>
 

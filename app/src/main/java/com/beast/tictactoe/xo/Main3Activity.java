@@ -5,18 +5,21 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Main3Activity extends AppCompatActivity {
 
     TextView dispTurn;
     Button playAgain;
+    Toast a;
     int greaterCount = 0;
-    int smallCount = 0;
+    int[] smallCount = {0, 0, 0, 0, 0, 0, 0, 0, 0};
     int[] ninePlaces = {
             2, 2, 2, 2, 2, 2, 2, 2, 2,
             2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -32,7 +35,7 @@ public class Main3Activity extends AppCompatActivity {
             2, 2, 2, 2, 2, 2, 2, 2, 2
     };
     int player = 1;
-    boolean openChoice = false;
+    boolean gameOver = false;
     int smallImageViewIds[] = {
             R.id.nineb0, R.id.nineb1, R.id.nineb2, R.id.nineb3, R.id.nineb4, R.id.nineb5, R.id.nineb6, R.id.nineb7, R.id.nineb8, R.id.nineb9
             , R.id.nineb10, R.id.nineb11, R.id.nineb12, R.id.nineb13, R.id.nineb14, R.id.nineb15, R.id.nineb16, R.id.nineb17, R.id.nineb18
@@ -49,10 +52,14 @@ public class Main3Activity extends AppCompatActivity {
             R.id.nineBig0, R.id.nineBig1, R.id.nineBig2, R.id.nineBig3, R.id.nineBig4, R.id.nineBig5, R.id.nineBig6, R.id.nineBig7, R.id.nineBig8
     };
 
+    TextView winner;
+    ImageView back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+        winner = (TextView) findViewById(R.id.winner);
         for (int i = 0; i < 9; i++) {
             LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
             temp.setClickable(true);
@@ -64,6 +71,21 @@ public class Main3Activity extends AppCompatActivity {
         playAgain = (Button) findViewById(R.id.pagain);
         playAgain.setVisibility(View.INVISIBLE);
         playAgain.setClickable(false);
+        back = (ImageView) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Main3Activity.this.finish();
+            }
+        });
+    }
+
+    public void onclickBig(View v){
+        if(a!=null)
+            a.cancel();
+        a = Toast.makeText(this.getApplicationContext(), "You cannot play here", Toast.LENGTH_SHORT);
+        a.setGravity(Gravity.TOP, 0, 0);
+        a.show();
     }
 
     public void onclick(View v) {
@@ -76,6 +98,7 @@ public class Main3Activity extends AppCompatActivity {
             temp.setClickable(false);
             player = 1;
             ninePlaces[idNum] = 0;
+            smallCount[idNum / 9]++;
             SpannableString spantext = new SpannableString("X's Turn");
             spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
             dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
@@ -84,23 +107,28 @@ public class Main3Activity extends AppCompatActivity {
             temp.setClickable(false);
             player = 0;
             ninePlaces[idNum] = 1;
+            smallCount[idNum / 9]++;
             SpannableString spantext = new SpannableString("O's Turn");
             spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
             dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
         }
         check(idNum, player);
-        if (openChoice) {
+        /*if (openChoice) {
             openChoiceFun(idNum);
             openChoice = false;
-        } else
+        } else*/
+        if (!gameOver)
             block(idNum);
+        if (smallCount[idNum / 9] == 9) {
+            greaterCount++;
+            threePlaces[idNum / 9] = 3;
+        }
     }
 
 
     public void check(int idNum, int player) {
         int smallStart = (idNum / 9) * 9;
         int bigPos = idNum / 9;
-//        int smallEnd = smallStart + 9;
         if (ninePlaces[smallStart] == ninePlaces[smallStart + 1] && ninePlaces[smallStart + 1] == ninePlaces[smallStart + 2] && ninePlaces[smallStart] != 2) {
             displayWin(smallStart, smallStart + 1, smallStart + 2, bigPos, player, idNum);
         } else if (ninePlaces[smallStart + 3] == ninePlaces[smallStart + 4] && ninePlaces[smallStart + 4] == ninePlaces[smallStart + 5] && ninePlaces[smallStart + 3] != 2) {
@@ -122,23 +150,59 @@ public class Main3Activity extends AppCompatActivity {
 
     public void checkBig() {
         if (threePlaces[0] == threePlaces[1] && threePlaces[1] == threePlaces[2] && threePlaces[0] != 2) {
+            displayWinBig(0, 1, 2);
             blockAll();
         } else if (threePlaces[3] == threePlaces[4] && threePlaces[4] == threePlaces[5] && threePlaces[3] != 2) {
+            displayWinBig(3, 4, 5);
             blockAll();
         } else if (threePlaces[6] == threePlaces[7] && threePlaces[7] == threePlaces[8] && threePlaces[6] != 2) {
+            displayWinBig(6, 7, 8);
             blockAll();
         } else if (threePlaces[0] == threePlaces[3] && threePlaces[3] == threePlaces[6] && threePlaces[0] != 2) {
+            displayWinBig(0, 3, 6);
             blockAll();
         } else if (threePlaces[1] == threePlaces[4] && threePlaces[4] == threePlaces[7] && threePlaces[1] != 2) {
+            displayWinBig(1, 4, 7);
             blockAll();
         } else if (threePlaces[2] == threePlaces[5] && threePlaces[5] == threePlaces[8] && threePlaces[2] != 2) {
+            displayWinBig(2, 5, 8);
             blockAll();
         } else if (threePlaces[0] == threePlaces[4] && threePlaces[4] == threePlaces[8] && threePlaces[0] != 2) {
+            displayWinBig(0, 4, 8);
             blockAll();
         } else if (threePlaces[2] == threePlaces[4] && threePlaces[4] == threePlaces[6] && threePlaces[2] != 2) {
+            displayWinBig(2, 4, 6);
             blockAll();
         } else if (greaterCount == 9) {
+            SpannableString spantext = new SpannableString("DRAW!");
+            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 1, 0);
+            winner.setText(spantext, TextView.BufferType.SPANNABLE);
             blockAll();
+        }
+    }
+
+    public void displayWinBig(int b1, int b2, int b3) {
+        LinearLayout big1 = (LinearLayout) findViewById(bigImageViewIds[b1]);
+        LinearLayout big2 = (LinearLayout) findViewById(bigImageViewIds[b2]);
+        LinearLayout big3 = (LinearLayout) findViewById(bigImageViewIds[b3]);
+        if (threePlaces[b1] == 1) {
+            big1.setBackgroundResource(R.drawable.xwin);
+            big2.setBackgroundResource(R.drawable.xwin);
+            big3.setBackgroundResource(R.drawable.xwin);
+            SpannableString spantext = new SpannableString("X wins!");
+            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 1, 0);
+            winner.setText(spantext, TextView.BufferType.SPANNABLE);
+        } else if (threePlaces[b1] == 0) {
+            big1.setBackgroundResource(R.drawable.owin);
+            big2.setBackgroundResource(R.drawable.owin);
+            big3.setBackgroundResource(R.drawable.owin);
+            SpannableString spantext = new SpannableString("O wins!");
+            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 1, 0);
+            winner.setText(spantext, TextView.BufferType.SPANNABLE);
+        }
+        for (int i = 0; i < 9; i++) {
+            LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
+            temp.setVisibility(View.VISIBLE);
         }
     }
 
@@ -151,7 +215,7 @@ public class Main3Activity extends AppCompatActivity {
             s1.setImageResource(R.drawable.xwin);
             s2.setImageResource(R.drawable.xwin);
             s3.setImageResource(R.drawable.xwin);
-            big.setBackgroundResource(R.drawable.xwin);
+            big.setBackgroundResource(R.drawable.x);
             big.setAlpha((float) 0.7);
             threePlaces[bigPos] = 1;
             greaterCount++;
@@ -159,20 +223,61 @@ public class Main3Activity extends AppCompatActivity {
             s1.setImageResource(R.drawable.owin);
             s2.setImageResource(R.drawable.owin);
             s3.setImageResource(R.drawable.owin);
-            big.setBackgroundResource(R.drawable.owin);
+            big.setBackgroundResource(R.drawable.o);
             big.setAlpha((float) 0.7);
             threePlaces[bigPos] = 0;
             greaterCount++;
         }
         checkBig();
-        if (bigPos == nextBigPos(idNum)) {
+        /*if (bigPos == nextBigPos(idNum)) {
             openChoice = true;
-        }
+        }*/
     }
 
     public void block(int idNum) {
         int bigPos = nextBigPos(idNum);
+        for (int i = 0; i < 9; i++) {
+            LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
+            temp.setVisibility(View.VISIBLE);
+        }
+        for (int i = 0; i < 81; i++) {
+            ImageView v = (ImageView) findViewById(smallImageViewIds[i]);
+            v.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+        }
         if (threePlaces[bigPos] != 2) {
+            for (int i = 0; i < 81; i++) {
+                if (threePlaces[i / 9] == 2) {
+                    ImageView v = (ImageView) findViewById(smallImageViewIds[i]);
+                    if (player == 1 && ninePlaces[i] == 2) {
+                        v.setImageDrawable(null);
+                        v.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.xclrlight));
+                    } else if (player == 0 && ninePlaces[i] == 2) {
+                        v.setImageDrawable(null);
+                        v.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.oclrlight));
+                    }
+                }
+            }
+            for (int i = 0; i < 9; i++) {
+                if (threePlaces[i] == 2) {
+                    LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
+                    temp.setVisibility(View.GONE);
+                }
+            }
+        } else if (threePlaces[bigPos] == 2) {
+            LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[bigPos]);
+            temp.setVisibility(View.GONE);
+            for (int i = bigPos * 9; i < bigPos * 9 + 9; i++) {
+                ImageView v = (ImageView) findViewById(smallImageViewIds[i]);
+                if (player == 1 && ninePlaces[i] == 2) {
+                    v.setImageDrawable(null);
+                    v.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.xclrlight));
+                } else if (player == 0 && ninePlaces[i] == 2) {
+                    v.setImageDrawable(null);
+                    v.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.oclrlight));
+                }
+            }
+        }
+        /*if (threePlaces[bigPos] != 2) {
             for (int i = 0; i < 9; i++) {
                 if (threePlaces[i] == 2) {
                     LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
@@ -225,10 +330,10 @@ public class Main3Activity extends AppCompatActivity {
                     }
                 }
             }
-        }
+        }*/
     }
 
-    public void openChoiceFun(int idNum) {
+    /*public void openChoiceFun(int idNum) {
         int bigPos = idNum / 9;
         for (int i = 0; i < 9; i++) {
             if (threePlaces[i] == 2) {
@@ -254,9 +359,10 @@ public class Main3Activity extends AppCompatActivity {
             ImageView v = (ImageView) findViewById(smallImageViewIds[i]);
             v.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
         }
-    }
+    }*/
 
     public void blockAll() {
+        gameOver = true;
         for (int i = 0; i < 81; i++) {
             ImageView temp = (ImageView) findViewById(smallImageViewIds[i]);
             temp.setClickable(false);
@@ -271,37 +377,7 @@ public class Main3Activity extends AppCompatActivity {
         playAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onCreate(null);
-                /*
-                for(int i = 0; i < 81 ; i++){
-                    ninePlaces[i] = 2;
-                }
-                for(int i = 0; i <9;i++){
-                    threePlaces[i] = 2;
-                }
-                player = 1;
-                openChoice = false;
-                for (int i = 0; i < 81; i++) {
-                    ImageView v1 = (ImageView) findViewById(smallImageViewIds[i]);
-                    v1.setImageResource(R.drawable.empty);
-                }
-                for (int i = 0; i < 81; i++) {
-                    ImageView v1 = (ImageView) findViewById(smallImageViewIds[i]);
-                    v1.setClickable(true);
-                }
-                for (int i = 0; i < 9; i++) {
-                    LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
-                    temp.setVisibility(View.INVISIBLE);
-                    temp.setBackgroundResource(R.drawable.empty);
-                }
-                dispTurn = (TextView) findViewById(R.id.dispTurn);
-                SpannableString spantext = new SpannableString("X's Turn");
-                spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
-                dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
-                playAgain = (Button) findViewById(R.id.pagain);
-                playAgain.setVisibility(View.INVISIBLE);
-                playAgain.setClickable(false);*/
-
+                recreate();
             }
         });
     }

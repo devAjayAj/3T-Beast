@@ -62,7 +62,7 @@ public class Normal extends AppCompatActivity implements View.OnClickListener {
         b9.setOnClickListener(this);
         back = (ImageView) findViewById(R.id.back);
         back.setOnClickListener(this);
-        cv = (CardView) findViewById(R.id.card);
+        /*cv = (CardView) findViewById(R.id.card);
         cv.post(new Runnable() {
             @Override
             public void run() {
@@ -70,7 +70,7 @@ public class Normal extends AppCompatActivity implements View.OnClickListener {
                 params.setMargins(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
                 cv.setLayoutParams(params);
             }
-        });
+        });*/
     }
 
     private int dpToPx(int dp) {
