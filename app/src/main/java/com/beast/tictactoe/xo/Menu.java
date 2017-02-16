@@ -14,7 +14,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-//        startActivity(new Intent(Menu.this,Main3Activity.class));
+//        startActivity(new Intent(Menu.this,Beast.class));
         nMode = (Button) findViewById(R.id.normalMode);
         nMode.setOnClickListener(this);
         bMode = (Button) findViewById(R.id.beast_mode);
@@ -31,17 +31,17 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                 /*String names[] = {"Local", "Online"};
                 AlertDialog.Builder mode = new AlertDialog.Builder(Menu.this);
                 LayoutInflater inflater = getLayoutInflater();
-                View convertView = inflater.inflate(R.layout.mode_of_beast, null);
+                View convertView = inflater.inflate(R.toast.mode_of_beast, null);
                 mode.setView(convertView);
                 ListView lv = (ListView) convertView.findViewById(R.id.mode);
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, names);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.toast.simple_list_item_1, names);
                 lv.setAdapter(adapter);
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         switch (i) {
                             case 0:*/
-                startActivity(new Intent(Menu.this, Main3Activity.class));
+                startActivity(new Intent(Menu.this, Beast.class));
                 break;
                             /*case 1:
                                 M.tl(getApplicationContext(),"Dont rush! first complete Local!!");

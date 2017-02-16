@@ -6,14 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Main3Activity extends AppCompatActivity {
+public class Beast extends AppCompatActivity {
 
     TextView dispTurn;
     Button playAgain;
@@ -58,7 +60,8 @@ public class Main3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.beast);
+        a = new Toast(getApplicationContext());
         winner = (TextView) findViewById(R.id.winner);
         for (int i = 0; i < 9; i++) {
             LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
@@ -75,16 +78,24 @@ public class Main3Activity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Main3Activity.this.finish();
+                Beast.this.finish();
             }
         });
     }
 
-    public void onclickBig(View v){
-        if(a!=null)
-            a.cancel();
-        a = Toast.makeText(this.getApplicationContext(), "You cannot play here", Toast.LENGTH_SHORT);
-        a.setGravity(Gravity.TOP, 0, 0);
+    public void onclickBig(View v) {
+        LayoutInflater inflater = getLayoutInflater();
+        View toast = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toast));
+        TextView disp = (TextView) toast.findViewById(R.id.toastTextView);
+        if(player == 1){
+            disp.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.xclr));
+        }
+        else if(player == 0){
+            disp.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.oclr));
+        }
+        a.setDuration(Toast.LENGTH_SHORT);
+        a.setGravity(Gravity.TOP, 0, 200);
+        a.setView(toast);
         a.show();
     }
 
@@ -149,28 +160,28 @@ public class Main3Activity extends AppCompatActivity {
     }
 
     public void checkBig() {
-        if (threePlaces[0] == threePlaces[1] && threePlaces[1] == threePlaces[2] && threePlaces[0] != 2) {
+        if (threePlaces[0] == threePlaces[1] && threePlaces[1] == threePlaces[2] && threePlaces[0] != 2 && threePlaces[0] != 3) {
             displayWinBig(0, 1, 2);
             blockAll();
-        } else if (threePlaces[3] == threePlaces[4] && threePlaces[4] == threePlaces[5] && threePlaces[3] != 2) {
+        } else if (threePlaces[3] == threePlaces[4] && threePlaces[4] == threePlaces[5] && threePlaces[3] != 2 && threePlaces[3] != 3) {
             displayWinBig(3, 4, 5);
             blockAll();
-        } else if (threePlaces[6] == threePlaces[7] && threePlaces[7] == threePlaces[8] && threePlaces[6] != 2) {
+        } else if (threePlaces[6] == threePlaces[7] && threePlaces[7] == threePlaces[8] && threePlaces[6] != 2 && threePlaces[6] != 3) {
             displayWinBig(6, 7, 8);
             blockAll();
-        } else if (threePlaces[0] == threePlaces[3] && threePlaces[3] == threePlaces[6] && threePlaces[0] != 2) {
+        } else if (threePlaces[0] == threePlaces[3] && threePlaces[3] == threePlaces[6] && threePlaces[0] != 2 && threePlaces[0] != 3) {
             displayWinBig(0, 3, 6);
             blockAll();
-        } else if (threePlaces[1] == threePlaces[4] && threePlaces[4] == threePlaces[7] && threePlaces[1] != 2) {
+        } else if (threePlaces[1] == threePlaces[4] && threePlaces[4] == threePlaces[7] && threePlaces[1] != 2 && threePlaces[1] != 3) {
             displayWinBig(1, 4, 7);
             blockAll();
-        } else if (threePlaces[2] == threePlaces[5] && threePlaces[5] == threePlaces[8] && threePlaces[2] != 2) {
+        } else if (threePlaces[2] == threePlaces[5] && threePlaces[5] == threePlaces[8] && threePlaces[2] != 2 && threePlaces[2] != 3) {
             displayWinBig(2, 5, 8);
             blockAll();
-        } else if (threePlaces[0] == threePlaces[4] && threePlaces[4] == threePlaces[8] && threePlaces[0] != 2) {
+        } else if (threePlaces[0] == threePlaces[4] && threePlaces[4] == threePlaces[8] && threePlaces[0] != 2 && threePlaces[0] != 3) {
             displayWinBig(0, 4, 8);
             blockAll();
-        } else if (threePlaces[2] == threePlaces[4] && threePlaces[4] == threePlaces[6] && threePlaces[2] != 2) {
+        } else if (threePlaces[2] == threePlaces[4] && threePlaces[4] == threePlaces[6] && threePlaces[2] != 2 && threePlaces[2] != 3) {
             displayWinBig(2, 4, 6);
             blockAll();
         } else if (greaterCount == 9) {
@@ -363,6 +374,10 @@ public class Main3Activity extends AppCompatActivity {
 
     public void blockAll() {
         gameOver = true;
+        for(int i = 0; i<9;i++){
+            LinearLayout temp = (LinearLayout)findViewById(bigImageViewIds[i]);
+            temp.setClickable(false);
+        }
         for (int i = 0; i < 81; i++) {
             ImageView temp = (ImageView) findViewById(smallImageViewIds[i]);
             temp.setClickable(false);
