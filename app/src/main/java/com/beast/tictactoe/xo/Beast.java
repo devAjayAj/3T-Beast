@@ -66,8 +66,6 @@ public class Beast extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.beast);
-        a = new Toast(getApplicationContext());
-        b = new Toast(getApplicationContext());
         winner = (TextView) findViewById(R.id.winner);
         for (int i = 0; i < 9; i++) {
             LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
@@ -100,8 +98,6 @@ public class Beast extends AppCompatActivity {
         fadeOut.setStartOffset(1500);
         fadeOut.setDuration(1000);
         TextView disp = (TextView) findViewById(R.id.toastCardViewText);
-        disp.setText("You Cannot Play Here!");
-        disp.setTextSize(16);
         if (player == 1) {
             disp.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.xclr));
         } else if (player == 0) {
@@ -121,7 +117,7 @@ public class Beast extends AppCompatActivity {
         String idName = v.getResources().getResourceEntryName(v.getId());
         String a = idName.replaceAll("[^0-9]", "");
         int idNum = Integer.parseInt(a);
-        ImageView temp = (ImageView) findViewById(v.getId());
+        ImageView temp = (ImageView) findViewById(smallImageViewIds[idNum]);
         if (ninePlaces[idNum] == 2) {
             if (player == 0) {
                 temp.setImageResource(R.drawable.o);
@@ -160,8 +156,11 @@ public class Beast extends AppCompatActivity {
             fadeOut.setStartOffset(1500);
             fadeOut.setDuration(1000);
             TextView disp = (TextView) findViewById(R.id.toastCardViewText);
-            disp.setText("Already Played!");
-            disp.setTextSize(16);
+            if (player == 1) {
+                disp.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.xclr));
+            } else if (player == 0) {
+                disp.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.oclr));
+            }
             CardView toastCard = (CardView) findViewById(R.id.toastCardView);
             toastCard.setVisibility(View.VISIBLE);
             AnimationSet animation = new AnimationSet(false);
@@ -229,7 +228,6 @@ public class Beast extends AppCompatActivity {
             blockAll();
         } else if (greaterCount == 9) {
             SpannableString spantext = new SpannableString("DRAW!");
-            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 1, 0);
             winner.setText(spantext, TextView.BufferType.SPANNABLE);
             blockAll();
         }
