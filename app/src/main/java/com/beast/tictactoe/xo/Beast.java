@@ -3,13 +3,18 @@ package com.beast.tictactoe.xo;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,7 +24,7 @@ public class Beast extends AppCompatActivity {
 
     TextView dispTurn;
     Button playAgain;
-    Toast a;
+    Toast a, b;
     int greaterCount = 0;
     int[] smallCount = {0, 0, 0, 0, 0, 0, 0, 0, 0};
     int[] ninePlaces = {
@@ -62,6 +67,7 @@ public class Beast extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.beast);
         a = new Toast(getApplicationContext());
+        b = new Toast(getApplicationContext());
         winner = (TextView) findViewById(R.id.winner);
         for (int i = 0; i < 9; i++) {
             LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
@@ -84,55 +90,86 @@ public class Beast extends AppCompatActivity {
     }
 
     public void onclickBig(View v) {
-        LayoutInflater inflater = getLayoutInflater();
-        View toast = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toast));
-        TextView disp = (TextView) toast.findViewById(R.id.toastTextView);
-        if(player == 1){
-            disp.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.xclr));
+        Animation slideIn = new TranslateAnimation(0, 0, 0, 200);
+        slideIn.setDuration(300);
+        Animation fadeIn = new AlphaAnimation(0, 1);
+        fadeIn.setInterpolator(new DecelerateInterpolator());
+        fadeIn.setDuration(800);
+        Animation fadeOut = new AlphaAnimation(1, 0);
+        fadeOut.setInterpolator(new AccelerateInterpolator());
+        fadeOut.setStartOffset(1500);
+        fadeOut.setDuration(1000);
+        TextView disp = (TextView) findViewById(R.id.toastCardViewText);
+        disp.setText("You Cannot Play Here!");
+        disp.setTextSize(16);
+        if (player == 1) {
+            disp.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.xclr));
+        } else if (player == 0) {
+            disp.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.oclr));
         }
-        else if(player == 0){
-            disp.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.oclr));
-        }
-        a.setDuration(Toast.LENGTH_SHORT);
-        a.setGravity(Gravity.TOP, 0, 200);
-        a.setView(toast);
-        a.show();
+        CardView toastCard = (CardView) findViewById(R.id.toastCardView);
+        toastCard.setVisibility(View.VISIBLE);
+        AnimationSet animation = new AnimationSet(false);
+        animation.setFillAfter(true);
+        animation.addAnimation(fadeIn);
+        animation.addAnimation(slideIn);
+        animation.addAnimation(fadeOut);
+        toastCard.startAnimation(animation);
     }
 
     public void onclick(View v) {
         String idName = v.getResources().getResourceEntryName(v.getId());
         String a = idName.replaceAll("[^0-9]", "");
         int idNum = Integer.parseInt(a);
-        ImageView temp = (ImageView) findViewById(smallImageViewIds[idNum]);
-        if (player == 0) {
-            temp.setImageResource(R.drawable.o);
-            temp.setClickable(false);
-            player = 1;
-            ninePlaces[idNum] = 0;
-            smallCount[idNum / 9]++;
-            SpannableString spantext = new SpannableString("X's Turn");
-            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
-            dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
-        } else if (player == 1) {
-            temp.setImageResource(R.drawable.x);
-            temp.setClickable(false);
-            player = 0;
-            ninePlaces[idNum] = 1;
-            smallCount[idNum / 9]++;
-            SpannableString spantext = new SpannableString("O's Turn");
-            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
-            dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
-        }
-        check(idNum, player);
+        ImageView temp = (ImageView) findViewById(v.getId());
+        if (ninePlaces[idNum] == 2) {
+            if (player == 0) {
+                temp.setImageResource(R.drawable.o);
+//            temp.setClickable(false);
+                player = 1;
+                ninePlaces[idNum] = 0;
+                smallCount[idNum / 9]++;
+                SpannableString spantext = new SpannableString("X's Turn");
+                spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
+                dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
+            } else if (player == 1) {
+                temp.setImageResource(R.drawable.x);
+//            temp.setClickable(false);
+                player = 0;
+                ninePlaces[idNum] = 1;
+                smallCount[idNum / 9]++;
+                SpannableString spantext = new SpannableString("O's Turn");
+                spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
+                dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
+            }
+            check(idNum, player);
         /*if (openChoice) {
             openChoiceFun(idNum);
             openChoice = false;
         } else*/
-        if (!gameOver)
-            block(idNum);
-        if (smallCount[idNum / 9] == 9) {
-            greaterCount++;
-            threePlaces[idNum / 9] = 3;
+            if (!gameOver)
+                block(idNum);
+        } else {
+            Animation slideIn = new TranslateAnimation(0, 0, 0, 200);
+            slideIn.setDuration(300);
+            Animation fadeIn = new AlphaAnimation(0, 1);
+            fadeIn.setInterpolator(new DecelerateInterpolator());
+            fadeIn.setDuration(800);
+            Animation fadeOut = new AlphaAnimation(1, 0);
+            fadeOut.setInterpolator(new AccelerateInterpolator());
+            fadeOut.setStartOffset(1500);
+            fadeOut.setDuration(1000);
+            TextView disp = (TextView) findViewById(R.id.toastCardViewText);
+            disp.setText("Already Played!");
+            disp.setTextSize(16);
+            CardView toastCard = (CardView) findViewById(R.id.toastCardView);
+            toastCard.setVisibility(View.VISIBLE);
+            AnimationSet animation = new AnimationSet(false);
+            animation.setFillAfter(true);
+            animation.addAnimation(fadeIn);
+            animation.addAnimation(slideIn);
+            animation.addAnimation(fadeOut);
+            toastCard.startAnimation(animation);
         }
     }
 
@@ -156,6 +193,12 @@ public class Beast extends AppCompatActivity {
             displayWin(smallStart, smallStart + 4, smallStart + 8, bigPos, player, idNum);
         } else if (ninePlaces[smallStart + 2] == ninePlaces[smallStart + 4] && ninePlaces[smallStart + 4] == ninePlaces[smallStart + 6] && ninePlaces[smallStart + 6] != 2) {
             displayWin(smallStart + 2, smallStart + 4, smallStart + 6, bigPos, player, idNum);
+        } else if (smallCount[idNum / 9] == 9) {
+            greaterCount++;
+            threePlaces[idNum / 9] = 3;
+            LinearLayout big = (LinearLayout) findViewById(bigImageViewIds[bigPos]);
+            big.setBackgroundResource(R.drawable.empty);
+            big.setAlpha((float) 0.9);
         }
     }
 
@@ -374,17 +417,14 @@ public class Beast extends AppCompatActivity {
 
     public void blockAll() {
         gameOver = true;
-        for(int i = 0; i<9;i++){
-            LinearLayout temp = (LinearLayout)findViewById(bigImageViewIds[i]);
+        for (int i = 0; i < 9; i++) {
+            LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
             temp.setClickable(false);
         }
         for (int i = 0; i < 81; i++) {
             ImageView temp = (ImageView) findViewById(smallImageViewIds[i]);
             temp.setClickable(false);
-        }
-        for (int i = 0; i < 81; i++) {
-            ImageView v = (ImageView) findViewById(smallImageViewIds[i]);
-            v.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+            temp.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
         }
         playAgain.setVisibility(View.VISIBLE);
         playAgain.setClickable(true);

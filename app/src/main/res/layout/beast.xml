@@ -5,79 +5,112 @@
     android:id="@+id/activity_main3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:weightSum="5"
-    android:background="@color/colorPrimary"
     tools:context="com.beast.tictactoe.xo.Beast">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical">
+        android:layout_weight="2">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="40dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="8dp"
-                android:contentDescription="@string/empty"
-                android:src="@drawable/ic_arrow_back_white_24dp" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/toastParent">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    app:cardCornerRadius="20dp"
+                    android:id="@+id/toastCardView"
+                    android:visibility="gone">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/toastCardViewText"/>
+                </android.support.v7.widget.CardView>
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/empty"
+                    android:src="@drawable/ic_arrow_back_white_24dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1" />
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <TextView
+                    android:id="@+id/dispTurn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/winner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/pagain"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/button_bg_white"
+                    android:text="@string/play_again"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp" />
+            </FrameLayout>
+
         </LinearLayout>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2">
-
-            <TextView
-                android:id="@+id/dispTurn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/winner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:layout_marginTop="50dp"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"/>
-
-            <Button
-                android:id="@+id/pagain"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_margin="8dp"
-                android:background="@drawable/button_bg_white"
-                android:text="@string/play_again"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
-        </FrameLayout>
-
-    </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -110,157 +143,157 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
 
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
                                 android:layout_weight="1"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb0"/>
+                                android:orientation="horizontal"
+                                android:weightSum="3">
 
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb1" />
+                                <ImageView
+                                    android:id="@+id/nineb0"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
 
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                <ImageView
+                                    android:id="@+id/nineb1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
                                 android:layout_weight="1"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb2" />
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb4"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb5"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb6"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb7"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb8"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/nineBig0"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb3" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_margin="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb4" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb5" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb6" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginBottom="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginTop="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb7" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                android:layout_marginRight="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb8" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:orientation="horizontal"
-                        android:layout_marginRight="1.5dp"
-                        android:layout_marginBottom="1.5dp"
-                        android:id="@+id/nineBig0"
-                        android:onClick="onclickBig"/>
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="1.5dp"
+                            android:layout_marginRight="1.5dp"
+                            android:onClick="onclickBig"
+                            android:orientation="horizontal"
+                            android:visibility="gone" />
 
                     </FrameLayout>
 
@@ -269,161 +302,161 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb9" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb10" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                android:layout_marginRight="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb11" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb12" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_margin="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb13" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                android:layout_marginTop="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb14" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb15" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb16" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb17" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:visibility="gone"
-                            android:orientation="horizontal"
-                            android:layout_marginRight="1.5dp"
-                            android:layout_marginBottom="1.5dp"
-                            android:layout_marginLeft="1.5dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb9"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb10"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb11"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb12"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb13"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb14"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb15"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb16"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb17"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:id="@+id/nineBig1"
-                            android:onClick="onclickBig"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="1.5dp"
+                            android:layout_marginLeft="1.5dp"
+                            android:layout_marginRight="1.5dp"
+                            android:onClick="onclickBig"
+                            android:orientation="horizontal"
+                            android:visibility="gone" />
 
                     </FrameLayout>
 
@@ -432,656 +465,157 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb18" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb19" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb20" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb21" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_margin="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb22" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginBottom="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginTop="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb23" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb24" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginBottom="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb25" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginBottom="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginTop="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb26" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:visibility="gone"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="1.5dp"
-                            android:layout_marginBottom="1.5dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb18"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb19"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb20"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb21"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb22"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb23"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb24"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb25"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb26"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:id="@+id/nineBig2"
-                            android:onClick="onclickBig"/>
-
-                    </FrameLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb27" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb28" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb29" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb30" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_margin="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb31" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb32" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb33" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb34" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb35" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        android:orientation="horizontal"
-                        android:layout_marginRight="1.5dp"
-                        android:layout_marginBottom="1.5dp"
-                        android:layout_marginTop="1.5dp"
-                        android:id="@+id/nineBig3"
-                        android:onClick="onclickBig"/>
-
-                </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb36" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb37" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb38" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb39" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_margin="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb40" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                android:layout_marginRight="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb41" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginTop="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb42" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb43" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb44" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:visibility="gone"
-                            android:orientation="horizontal"
-                            android:layout_margin="1.5dp"
-                            android:id="@+id/nineBig4"
-                            android:onClick="onclickBig"/>
-
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb45" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb46" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb47" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb48" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_margin="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb49" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb50" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb51" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb52" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="1.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb53" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:visibility="gone"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="1.5dp"
                             android:layout_marginBottom="1.5dp"
-                            android:layout_marginTop="1.5dp"
-                            android:id="@+id/nineBig5"
-                            android:onClick="onclickBig"/>
+                            android:layout_marginLeft="1.5dp"
+                            android:onClick="onclickBig"
+                            android:orientation="horizontal"
+                            android:visibility="gone" />
 
                     </FrameLayout>
 
@@ -1099,320 +633,656 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb27"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb28"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb29"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb30"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb31"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb32"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb33"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb34"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb35"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/nineBig3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="1.5dp"
+                            android:layout_marginRight="1.5dp"
+                            android:layout_marginTop="1.5dp"
+                            android:onClick="onclickBig"
+                            android:orientation="horizontal"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb54" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb55" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb56" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb57" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_margin="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb58" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb59" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb60" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb61" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb62" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:visibility="gone"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb36"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb37"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb38"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb39"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb40"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb41"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb42"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb43"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb44"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/nineBig4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1.5dp"
+                            android:onClick="onclickBig"
                             android:orientation="horizontal"
-                            android:layout_marginRight="1.5dp"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb45"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb46"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb47"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb48"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb49"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb50"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb51"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb52"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb53"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="1.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/nineBig5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="1.5dp"
+                            android:layout_marginLeft="1.5dp"
                             android:layout_marginTop="1.5dp"
+                            android:onClick="onclickBig"
+                            android:orientation="horizontal"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb54"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb55"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb56"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb57"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb58"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb59"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb60"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb61"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb62"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:id="@+id/nineBig6"
-                            android:onClick="onclickBig"/>
-
-                    </FrameLayout>
-
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb63" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb64" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb65" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb66" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_margin="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb67" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb68" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb69" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb70" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginRight="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginTop="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb71" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:visibility="gone"
-                            android:orientation="horizontal"
                             android:layout_marginRight="1.5dp"
-                            android:layout_marginLeft="1.5dp"
                             android:layout_marginTop="1.5dp"
-                            android:id="@+id/nineBig7"
-                            android:onClick="onclickBig"/>
+                            android:onClick="onclickBig"
+                            android:orientation="horizontal"
+                            android:visibility="gone" />
 
                     </FrameLayout>
 
@@ -1421,157 +1291,320 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb63"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb64"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb65"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb66"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb67"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb68"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb69"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb70"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb71"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="1.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/nineBig7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1.5dp"
+                            android:layout_marginRight="1.5dp"
+                            android:layout_marginTop="1.5dp"
+                            android:onClick="onclickBig"
+                            android:orientation="horizontal"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb72" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb73" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="1.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb74" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb75" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_margin="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb76" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginBottom="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb77" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:weightSum="3"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="1.5dp"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb78" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                android:layout_marginRight="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb79" />
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="0.5dp"
-                                android:layout_marginLeft="0.5dp"
-                                app:srcCompat="@drawable/empty"
-                                android:scaleType="fitXY"
-                                android:onClick="onclick"
-                                android:id="@+id/nineb80" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:visibility="gone"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="1.5dp"
-                            android:layout_marginLeft="1.5dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb72"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb73"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb74"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginTop="1.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb75"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb76"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb77"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="0.5dp"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <ImageView
+                                    android:id="@+id/nineb78"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="1.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb79"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginRight="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                                <ImageView
+                                    android:id="@+id/nineb80"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="0.5dp"
+                                    android:layout_marginTop="0.5dp"
+                                    android:layout_weight="1"
+                                    android:onClick="onclick"
+                                    android:scaleType="fitXY"
+                                    app:srcCompat="@drawable/empty" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:id="@+id/nineBig8"
-                            android:onClick="onclickBig"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1.5dp"
+                            android:layout_marginTop="1.5dp"
+                            android:onClick="onclickBig"
+                            android:orientation="horizontal"
+                            android:visibility="gone" />
 
                     </FrameLayout>
 
