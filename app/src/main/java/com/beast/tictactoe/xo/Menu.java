@@ -14,7 +14,6 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-//        startActivity(new Intent(Menu.this,Beast.class));
         nMode = (Button) findViewById(R.id.normalMode);
         nMode.setOnClickListener(this);
         bMode = (Button) findViewById(R.id.beast_mode);
@@ -25,7 +24,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.normalMode:
-                startActivity(new Intent(Menu.this, Normal.class));
+                startActivity(new Intent(Menu.this, NormalModeMenu.class));
                 break;
             case R.id.beast_mode:
                 /*String names[] = {"Local", "Online"};

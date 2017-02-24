@@ -1,5 +1,6 @@
 package com.beast.tictactoe.xo;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -66,6 +67,7 @@ public class Beast extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.beast);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         winner = (TextView) findViewById(R.id.winner);
         for (int i = 0; i < 9; i++) {
             LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
@@ -121,7 +123,6 @@ public class Beast extends AppCompatActivity {
         if (ninePlaces[idNum] == 2) {
             if (player == 0) {
                 temp.setImageResource(R.drawable.o);
-//            temp.setClickable(false);
                 player = 1;
                 ninePlaces[idNum] = 0;
                 smallCount[idNum / 9]++;
@@ -130,7 +131,6 @@ public class Beast extends AppCompatActivity {
                 dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
             } else if (player == 1) {
                 temp.setImageResource(R.drawable.x);
-//            temp.setClickable(false);
                 player = 0;
                 ninePlaces[idNum] = 1;
                 smallCount[idNum / 9]++;
@@ -139,10 +139,6 @@ public class Beast extends AppCompatActivity {
                 dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
             }
             check(idNum, player);
-        /*if (openChoice) {
-            openChoiceFun(idNum);
-            openChoice = false;
-        } else*/
             if (!gameOver)
                 block(idNum);
         } else {
@@ -281,9 +277,6 @@ public class Beast extends AppCompatActivity {
             greaterCount++;
         }
         checkBig();
-        /*if (bigPos == nextBigPos(idNum)) {
-            openChoice = true;
-        }*/
     }
 
     public void block(int idNum) {
@@ -417,6 +410,7 @@ public class Beast extends AppCompatActivity {
         gameOver = true;
         for (int i = 0; i < 9; i++) {
             LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
+            temp.setVisibility(View.VISIBLE);
             temp.setClickable(false);
         }
         for (int i = 0; i < 81; i++) {
