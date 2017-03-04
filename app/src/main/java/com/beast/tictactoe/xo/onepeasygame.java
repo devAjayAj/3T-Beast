@@ -1,26 +1,26 @@
 package com.beast.tictactoe.xo;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.text.SpannableString;
-import android.text.style.RelativeSizeSpan;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.util.Random;
 
 public class onepeasygame extends AppCompatActivity implements View.OnClickListener {
     ImageView b1, b2, b3, b4, b5, b6, b7, b8, b9, back;
+    int b1c = 0, b2c = 0, b3c = 0, b4c = 0, b5c = 0, b6c = 0, b7c = 0, b8c = 0, b9c = 0;
     LinearLayout llayout;
-    CardView cv;
     int dataentry[][] = new int[3][3], x = 0, y = 0, c, gameover, ctrlvar;
     TextView xs, ys, dispTurn, winner;
     Button playAgain, reset;
+    Boolean backActivity = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +35,8 @@ public class onepeasygame extends AppCompatActivity implements View.OnClickListe
         ys = (TextView) findViewById(R.id.yscore);
         dispTurn = (TextView) findViewById(R.id.dispTurn);
         winner = (TextView) findViewById(R.id.winner);
-        SpannableString spantext = new SpannableString("X's Turn");
-        spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
+        SpannableString spantext = new SpannableString("Your Turn");
+//        spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
         dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
         playAgain = (Button) findViewById(R.id.pagain);
         reset = (Button) findViewById(R.id.reset);
@@ -80,15 +80,24 @@ public class onepeasygame extends AppCompatActivity implements View.OnClickListe
     }
 
     public void clickable(Boolean val) {
-        b1.setClickable(val);
-        b2.setClickable(val);
-        b3.setClickable(val);
-        b4.setClickable(val);
-        b5.setClickable(val);
-        b6.setClickable(val);
-        b7.setClickable(val);
-        b8.setClickable(val);
-        b9.setClickable(val);
+        if (b1c == 0)
+            b1.setClickable(val);
+        if (b2c == 0)
+            b2.setClickable(val);
+        if (b3c == 0)
+            b3.setClickable(val);
+        if (b4c == 0)
+            b4.setClickable(val);
+        if (b5c == 0)
+            b5.setClickable(val);
+        if (b6c == 0)
+            b6.setClickable(val);
+        if (b7c == 0)
+            b7.setClickable(val);
+        if (b8c == 0)
+            b8.setClickable(val);
+        if (b9c == 0)
+            b9.setClickable(val);
     }
 
     public void clear() {
@@ -103,11 +112,13 @@ public class onepeasygame extends AppCompatActivity implements View.OnClickListe
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                xs.setText("0");
-                ys.setText("0");
-                x = 0;
-                y = 0;
-                newGame();
+                if (x != 0 || y != 0) {
+                    xs.setText("0");
+                    ys.setText("0");
+                    x = 0;
+                    y = 0;
+                    newGame();
+                }
             }
         });
         playAgain.setOnClickListener(new View.OnClickListener() {
@@ -120,8 +131,8 @@ public class onepeasygame extends AppCompatActivity implements View.OnClickListe
     }
 
     public void newGame() {
-        SpannableString spantext = new SpannableString("X's Turn");
-        spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
+        SpannableString spantext = new SpannableString("Your Turn");
+//        spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
         dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
         winner.setText(" ");
         playAgain.setClickable(false);
@@ -141,13 +152,22 @@ public class onepeasygame extends AppCompatActivity implements View.OnClickListe
         b7.setBackgroundResource(R.drawable.empty);
         b8.setBackgroundResource(R.drawable.empty);
         b9.setBackgroundResource(R.drawable.empty);
+        b1c = 0;
+        b2c = 0;
+        b3c = 0;
+        b4c = 0;
+        b5c = 0;
+        b6c = 0;
+        b7c = 0;
+        b8c = 0;
+        b9c = 0;
         clickable(true);
     }
 
     public void declare(ImageView bb1, ImageView bb2, ImageView bb3, int check) {
         if (check == 1) {
-            SpannableString spantext = new SpannableString("X wins!");
-            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 1, 0);
+            SpannableString spantext = new SpannableString("You win!");
+//            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 1, 0);
             winner.setText(spantext, TextView.BufferType.SPANNABLE);
             bb1.setBackgroundResource(R.drawable.xwin);
             bb2.setBackgroundResource(R.drawable.xwin);
@@ -156,10 +176,10 @@ public class onepeasygame extends AppCompatActivity implements View.OnClickListe
             x++;
             clear();
         } else if (check == 0) {
-            SpannableString spantext = new SpannableString("O wins!");
+            SpannableString spantext = new SpannableString("Computer wins!");
             /*spantext.setSpan(new ForegroundColorSpan(Color.rgb(248, 114, 106)), 0, 1, 0);
             spantext.setSpan(new ForegroundColorSpan(Color.rgb(248, 114, 106)), 6, 7, 0);*/
-            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 1, 0);
+//            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 1, 0);
             winner.setText(spantext, TextView.BufferType.SPANNABLE);
             bb1.setBackgroundResource(R.drawable.owin);
             bb2.setBackgroundResource(R.drawable.owin);
@@ -235,16 +255,16 @@ public class onepeasygame extends AppCompatActivity implements View.OnClickListe
             bb1.setClickable(false);
             ctrlvar++;
             dataentry[a][b] = 1;
-            SpannableString spantext = new SpannableString("O's Turn");
-            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
+            SpannableString spantext = new SpannableString("Computer's Turn");
+//            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
             dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
         } else if (check == 0) {
             bb1.setBackgroundResource(R.drawable.o);
             bb1.setClickable(false);
             ctrlvar++;
             dataentry[a][b] = 10;
-            SpannableString spantext = new SpannableString("X's Turn");
-            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
+            SpannableString spantext = new SpannableString("Your Turn");
+//            spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
             dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
         }
     }
@@ -258,22 +278,31 @@ public class onepeasygame extends AppCompatActivity implements View.OnClickListe
         } while (dataentry[a][place] != 0);
         if (a == 0 && place == 0) {
             displayTurn(b1, 0, 0, 0);
+            b1c = 1;
         } else if (a == 0 && place == 1) {
             displayTurn(b2, 0, 1, 0);
+            b2c = 1;
         } else if (a == 0 && place == 2) {
             displayTurn(b3, 0, 2, 0);
-        } else if (a == 1 && place == 0) {
+            b3c = 1;
+       } else if (a == 1 && place == 0) {
             displayTurn(b4, 1, 0, 0);
+            b4c = 1;
         } else if (a == 1 && place == 1) {
             displayTurn(b5, 1, 1, 0);
+            b5c = 1;
         } else if (a == 1 && place == 2) {
             displayTurn(b6, 1, 2, 0);
+            b6c = 1;
         } else if (a == 2 && place == 0) {
             displayTurn(b7, 2, 0, 0);
+            b7c = 1;
         } else if (a == 2 && place == 1) {
             displayTurn(b8, 2, 1, 0);
+            b8c = 1;
         } else if (a == 2 && place == 2) {
             displayTurn(b9, 2, 2, 0);
+            b9c = 1;
         }
     }
 
@@ -282,38 +311,57 @@ public class onepeasygame extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.b1:
                 displayTurn(b1, 0, 0, 1);
+                b1c = 1;
                 break;
             case R.id.b2:
                 displayTurn(b2, 0, 1, 1);
+                b2c = 1;
                 break;
             case R.id.b3:
                 displayTurn(b3, 0, 2, 1);
+                b3c = 1;
                 break;
             case R.id.b4:
                 displayTurn(b4, 1, 0, 1);
+                b4c = 1;
                 break;
             case R.id.b5:
                 displayTurn(b5, 1, 1, 1);
+                b5c = 1;
                 break;
             case R.id.b6:
                 displayTurn(b6, 1, 2, 1);
+                b6c = 1;
                 break;
             case R.id.b7:
                 displayTurn(b7, 2, 0, 1);
+                b7c = 1;
                 break;
             case R.id.b8:
                 displayTurn(b8, 2, 1, 1);
+                b8c = 1;
                 break;
             case R.id.b9:
                 displayTurn(b9, 2, 2, 1);
+                b9c = 1;
                 break;
             case R.id.back:
                 onepeasygame.this.finish();
+                backActivity = true;
         }
-        check();
-        if(gameover!=1&&ctrlvar!=9) {
-            compTurn();
+        clickable(false);
+        if (!backActivity)
             check();
+        if (gameover != 1 && ctrlvar != 9 && !backActivity) {
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    compTurn();
+                    clickable(true);
+                    check();
+                }
+            }, 500);
         }
     }
 }

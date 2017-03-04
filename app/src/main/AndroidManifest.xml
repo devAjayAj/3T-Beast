@@ -29,7 +29,8 @@
         <activity android:name=".NormalModeMenu" />
         <activity android:name=".onepmenu" />
         <activity android:name=".onepeasygame" />
-        <activity android:name=".onepHardGame"></activity>
+        <activity android:name=".onepHardGame" />
+        <activity android:name=".onepMediumGame"></activity>
     </application>
 
 </manifest>

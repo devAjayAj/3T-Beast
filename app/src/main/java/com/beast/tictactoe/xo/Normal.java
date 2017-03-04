@@ -102,11 +102,13 @@ public class Normal extends AppCompatActivity implements View.OnClickListener {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                xs.setText("0");
-                ys.setText("0");
-                x = 0;
-                y = 0;
-                newGame();
+                if (x != 0 || y != 0) {
+                    xs.setText("0");
+                    ys.setText("0");
+                    x = 0;
+                    y = 0;
+                    newGame();
+                }
             }
         });
         playAgain.setOnClickListener(new View.OnClickListener() {

@@ -16,5 +16,6 @@
     <string name="selectdifficultlevel">Select Difficulty Level</string>
     <string name="easy">Easy</string>
     <string name="hard">Hard</string>
+    <string name="medium">Intermediate</string>
 
 </resources>
