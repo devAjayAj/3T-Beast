@@ -5,6 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.io.Serializable;
 
 public class Menu extends AppCompatActivity implements View.OnClickListener {
 
@@ -18,6 +24,8 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
         nMode.setOnClickListener(this);
         bMode = (Button) findViewById(R.id.beast_mode);
         bMode.setOnClickListener(this);
+//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//        FirebaseUser user = mAuth.getCurrentUser();
     }
 
     @Override

@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Menu"
+            android:name=".Login"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -33,10 +33,8 @@
         <activity android:name=".onepMediumGame" />
         <activity android:name=".BeastModeMenu" />
         <activity android:name=".BeastOnePMenu" />
-        <activity
-            android:name=".BeastOnePEasyGame"
-            android:label="@string/title_activity_beast_one_peasy_game"
-            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".BeastOnePEasyGame" />
+        <activity android:name=".Menu"></activity>
     </application>
 
 </manifest>

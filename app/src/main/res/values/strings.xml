@@ -17,6 +17,7 @@
     <string name="easy">Beginner</string>
     <string name="hard">Expert</string>
     <string name="medium">Intermediate</string>
+    <string name="web_client_id">517381114834-orgl73rrvn39j4sknjb6fhj6691ocsff.apps.googleusercontent.com</string>
     <string name="title_activity_beast_one_peasy_game">BeastOnePEasyGame</string>
 
 </resources>
