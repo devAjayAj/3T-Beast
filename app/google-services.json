@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "517381114834",
+    "firebase_url": "https://xogame-e42a2.firebaseio.com",
+    "project_id": "xogame-e42a2",
+    "storage_bucket": "xogame-e42a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517381114834:android:d790d87277d31851",
+        "android_client_info": {
+          "package_name": "com.beast.tictactoe.xo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517381114834-urshofd5mhiq0ko6pjmuo8qpr030in99.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.beast.tictactoe.xo",
+            "certificate_hash": "83759b5cf5f99ec3de6ea23004c5a5947dc7f48e"
+          }
+        },
+        {
+          "client_id": "517381114834-orgl73rrvn39j4sknjb6fhj6691ocsff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_1DHh2Wwiojunstlwd0DGrw68EBv1qKc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517381114834-orgl73rrvn39j4sknjb6fhj6691ocsff.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
