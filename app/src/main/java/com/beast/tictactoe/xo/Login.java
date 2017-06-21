@@ -1,5 +1,6 @@
 package com.beast.tictactoe.xo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private static final String TAG = "Google Activity";
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
+    private GoogleSignInAccount account;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +81,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if(result.isSuccess()){
-                GoogleSignInAccount account = result.getSignInAccount();
+                account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             }
         }
@@ -110,7 +112,8 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
     public void updateUI(FirebaseUser user){
         if(user != null){
-            Intent intent = new Intent(Login.this, Menu.class);
+            Intent intent = new Intent(Login.this, TwoPlayerOnline.class);
+            this.finish();
             startActivity(intent);
         }
     }

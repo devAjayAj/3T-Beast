@@ -17,7 +17,7 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class onepHardGame extends AppCompatActivity implements View.OnClickListener {
-    ImageView b1, b2, b3, b4, b5, b6, b7, b8, b9, back;
+        ImageView b1, b2, b3, b4, b5, b6, b7, b8, b9, back;
         int b1c = 0, b2c = 0, b3c = 0, b4c = 0, b5c = 0, b6c = 0, b7c = 0, b8c = 0, b9c = 0;
         LinearLayout llayout;
         int dataentry[][] = new int[3][3], x = 0, y = 0, c, gameover, ctrlvar;

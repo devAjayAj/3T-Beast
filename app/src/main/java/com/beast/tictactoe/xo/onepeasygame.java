@@ -1,5 +1,6 @@
 package com.beast.tictactoe.xo;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInApi;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthCredential;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
+
+import java.net.URI;
 import java.util.Random;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.R.attr.data;
 
 public class onepeasygame extends AppCompatActivity implements View.OnClickListener {
     ImageView b1, b2, b3, b4, b5, b6, b7, b8, b9, back;
@@ -31,6 +49,15 @@ public class onepeasygame extends AppCompatActivity implements View.OnClickListe
             for (int j = 0; j <= 2; j++) {
                 dataentry[i][j] = 0;
             }
+
+
+//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        CircleImageView profilePic = (CircleImageView) findViewById(R.id.profile_image);
+//        user.reload();
+//        Uri uri = user.getPhotoUrl();
+//        Picasso.with(onepeasygame.this).load(uri).memoryPolicy(MemoryPolicy.NO_CACHE).into(profilePic);
+
         xs = (TextView) findViewById(R.id.xscore);
         ys = (TextView) findViewById(R.id.yscore);
         dispTurn = (TextView) findViewById(R.id.dispTurn);
