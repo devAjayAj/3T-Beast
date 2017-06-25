@@ -36,7 +36,7 @@ import java.util.Map;
 public class TwoPlayerOnline extends AppCompatActivity {
     private static final String TAG = TwoPlayerOnline.class.getSimpleName();
     int greaterCount = 0, player = 2;
-    int[] smallCount = {0,0,0,0,0,0,0,0,0}; //no. of small boxes played in each bigger one, Eg:[3, 0, 9, 2, 9, 0, 0, 0, 0], 3 small boxes played in 1st big box
+    int[] smallCount = {0, 0, 0, 0, 0, 0, 0, 0, 0}; //no. of small boxes played in each bigger one, Eg:[3, 0, 9, 2, 9, 0, 0, 0, 0], 3 small boxes played in 1st big box
     int[] ninePlaces = { //keep track of which small box is played and by whom
             2, 2, 2, 2, 2, 2, 2, 2, 2,
             2, 2, 2, 2, 2, 2, 2, 2, 2,
@@ -74,9 +74,9 @@ public class TwoPlayerOnline extends AppCompatActivity {
     ImageView back;
     DatabaseReference mDatabase, updateChildRef;
     FirebaseUser user;
-    Board board;
     int currentPlayer;
     String currXpos, currOpos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,26 +86,96 @@ public class TwoPlayerOnline extends AppCompatActivity {
 //            temp.setClickable(false);
 //        }
         blockAll();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
-        mDatabase.child("searching").child("modeNormal").push().child("uid").setValue(user.getUid());
-        mDatabase.child("players/" + user.getUid()).addValueEventListener(new ValueEventListener() {
+        updateChildRef = FirebaseDatabase.getInstance().getReference("board/" + getIntent().getStringExtra("pushKey"));
+        updateChildRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Player playerObj = dataSnapshot.getValue(Player.class);
-                if(playerObj != null) {
-                    updateChildRef = FirebaseDatabase.getInstance().getReference("board/" + playerObj.pushKey);
-                    if(playerObj.pushKey != null) {
-                        boardClass(playerObj.pushKey);
+                Board board = dataSnapshot.getValue(Board.class);
+                if (board != null && !gameOver) {
+                    Log.e(TAG, "" + board.getXpos());
+                    Log.e(TAG, "" + board.getOpos());
+                    Log.e(TAG, "" + board.getBig());
+                    Log.e(TAG, "" + board.getMegacount());
+                    Log.e(TAG, "" + board.getMinicount());
+                    Log.e(TAG, "" + board.getX());
+                    Log.e(TAG, "" + board.getO());
+                    Log.e(TAG, "" + board.getFirst());
+                    Log.e(TAG, "" + board.getCpos());
+                    Log.e(TAG, "" + board.getCplayer());
+                    currXpos = board.xpos;
+                    currOpos = board.opos;
+                    threePlaces = stringToArray(board.big, 0);
+                    greaterCount = board.megacount;
+                    smallCount = stringToArray(board.minicount, 0);
+                    setNinePlacesMatrix(stringToArray(board.xpos, 1), stringToArray(board.opos, 1));
+                    if (board.first) {
+                        if (board.x.equals(user.getUid())) {
+                            player = 0;
+                        } else {
+                            player = 1;
+                        }
                     }
+                    if (board.cplayer == player) {
+                        if (!board.first) {
+                            if (player == 1) {
+                                ImageView temp = (ImageView) findViewById(smallImageViewIds[board.cpos]);
+                                temp.setImageResource(R.drawable.x);
+                                check(board.cpos, 0);
+                            } else if (player == 0) {
+                                ImageView temp = (ImageView) findViewById(smallImageViewIds[board.cpos]);
+                                temp.setImageResource(R.drawable.o);
+                                check(board.cpos, 1);
+                            }
+                        }
+                        SpannableString spantext = new SpannableString("Your Turn");
+//                        spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 4, 0);
+                        dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
+                        unBlockAll();
+                        if (!board.first && !gameOver) {
+                            block(board.cpos);
+                            ImageView temp = (ImageView) findViewById(smallImageViewIds[board.cpos]);
+                            if (player == 1)
+                                temp.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.xclrlight));
+                            else if (player == 0)
+                                temp.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.oclrlight));
+                        }
+                    } else {
+                        SpannableString spantext = new SpannableString("Opponent's Turn");
+//                        spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 8, 0);
+                        dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
+                        blockAll();
+                    }
+                }
+                if (gameOver) {
+                    blockAll();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAG, "dberror:" + databaseError);
             }
         });
+//        mDatabase = FirebaseDatabase.getInstance().getReference();
+//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//        user = mAuth.getCurrentUser();
+//        mDatabase.child("searching").child("modeNormal").push().child("uid").setValue(user.getUid());
+//        mDatabase.child("players/" + user.getUid()).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Player playerObj = dataSnapshot.getValue(Player.class);
+//                if(playerObj != null) {
+//                    updateChildRef = FirebaseDatabase.getInstance().getReference("board/" + playerObj.pushKey);
+//                    if(playerObj.pushKey != null) {
+//                        boardClass(playerObj.pushKey);
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//        });
         winner = (TextView) findViewById(R.id.winner);
         dispTurn = (TextView) findViewById(R.id.dispTurn);
         dispTurn.setVisibility(View.VISIBLE);
@@ -122,7 +192,7 @@ public class TwoPlayerOnline extends AppCompatActivity {
     }
 
     public void onclickBig(View v) {
-        if(tempBlockVar) {
+        if (tempBlockVar) {
             Animation slideIn = new TranslateAnimation(0, 0, 0, 200);
             slideIn.setDuration(300);
             Animation fadeIn = new AlphaAnimation(0, 1);
@@ -351,7 +421,7 @@ public class TwoPlayerOnline extends AppCompatActivity {
             temp.setClickable(true);
         }
         for (int i = 0; i < 81; i++) {
-            if(ninePlaces[i] == 2) {
+            if (ninePlaces[i] == 2) {
                 ImageView temp = (ImageView) findViewById(smallImageViewIds[i]);
 //            temp.setClickable(false);
                 temp.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
@@ -367,27 +437,29 @@ public class TwoPlayerOnline extends AppCompatActivity {
 //            }
 //        });
     }
-    public void unBlockAll(){
+
+    public void unBlockAll() {
         for (int i = 0; i < 9; i++) {
             LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
             temp.setVisibility(View.INVISIBLE);
             temp.setClickable(false);
         }
     }
+
     public int nextBigPos(int idNum) {
         return (idNum % 9);
     }
 
-    public void writeData(int curPos){
-        if(player == 0) {
+    public void writeData(int curPos) {
+        if (player == 0) {
             currXpos = currXpos + ',' + curPos;
             Map map = new HashMap();
             map.put("cplayer", 1);
             map.put("xpos", currXpos);
             map.put("cpos", curPos);
-            map.put("minicount", Arrays.toString(smallCount).replaceAll("\\[","").replaceAll("\\]",""));
+            map.put("minicount", Arrays.toString(smallCount).replaceAll("\\[", "").replaceAll("\\]", ""));
             map.put("megacount", greaterCount);
-            map.put("big", "" + Arrays.toString(threePlaces).replaceAll("\\[","").replaceAll("\\]",""));
+            map.put("big", "" + Arrays.toString(threePlaces).replaceAll("\\[", "").replaceAll("\\]", ""));
             map.put("first", false);
             updateChildRef.updateChildren(map);
         } else {
@@ -396,174 +468,102 @@ public class TwoPlayerOnline extends AppCompatActivity {
             map.put("cplayer", 0);
             map.put("opos", currOpos);
             map.put("cpos", curPos);
-            map.put("minicount",  Arrays.toString(smallCount).replaceAll("\\[","").replaceAll("\\]",""));
+            map.put("minicount", Arrays.toString(smallCount).replaceAll("\\[", "").replaceAll("\\]", ""));
             map.put("megacount", greaterCount);
-            map.put("big", Arrays.toString(threePlaces).replaceAll("\\[","").replaceAll("\\]",""));
+            map.put("big", Arrays.toString(threePlaces).replaceAll("\\[", "").replaceAll("\\]", ""));
             map.put("first", false);
             updateChildRef.updateChildren(map);
         }
     }
 
-    public void boardClass(String pushKey) {
-        mDatabase.child("board/"+pushKey).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                board = dataSnapshot.getValue(Board.class);
-                if(board != null && !gameOver && board.big != null){
-                    Log.e(TAG, "" + board.getXpos());
-                    Log.e(TAG, "" + board.getOpos());
-                    Log.e(TAG, "" + board.getBig());
-                    Log.e(TAG, ""+ board.getMegacount());
-                    Log.e(TAG, "" + board.getMinicount());
-                    Log.e(TAG, "" + board.getX());
-                    Log.e(TAG, "" + board.getO());
-                    Log.e(TAG, "" + board.getFirst());
-                    Log.e(TAG, "" + board.getCpos());
-                    Log.e(TAG, "" + board.getCplayer());
-
-                    currXpos = board.xpos;
-                    currOpos = board.opos;
-                    threePlaces = stringToArray(board.big, 0);
-                    greaterCount = board.megacount;
-                    smallCount = stringToArray(board.minicount, 0);
-                    setNinePlacesMatrix(stringToArray(board.xpos, 1), stringToArray(board.opos, 1));
-                    if(board.first){
-                        if(board.x.equals(user.getUid())){
-                            player = 0;
-                        }
-                        else {
-                            player = 1;
-                        }
-                    }
-                    if(board.cplayer == player) {
-                        if(!board.first){
-                            if(player == 1){
-                                ImageView temp = (ImageView) findViewById(smallImageViewIds[board.cpos]);
-                                temp.setImageResource(R.drawable.x);
-                                check(board.cpos, 0);
-                            } else if (player == 0) {
-                                ImageView temp = (ImageView) findViewById(smallImageViewIds[board.cpos]);
-                                temp.setImageResource(R.drawable.o);
-                                check(board.cpos, 1);
-                            }
-                        }
-                        SpannableString spantext = new SpannableString("Your Turn");
-//                        spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 4, 0);
-                        dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
-                        unBlockAll();
-                        if(!board.first && !gameOver) {
-                            block(board.cpos);
-                            ImageView temp = (ImageView) findViewById(smallImageViewIds[board.cpos]);
-                            if(player == 1)
-                                temp.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.xclrlight));
-                            else if(player == 0)
-                                temp.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.oclrlight));
-                        }
-                    }
-                    else{
-                        SpannableString spantext = new SpannableString("Opponent's Turn");
-//                        spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 8, 0);
-                        dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
-                        blockAll();
-                    }
-                }
-                if(gameOver){
-                    blockAll();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-    public int[] stringToArray(String arr, int i){
-        String[] bigAsString = arr.replaceAll("\\s","").split(",");
+    //    public void boardClass(String pushKey) {
+//        updateChildRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Board board = dataSnapshot.getValue(Board.class);
+//                if(board != null && !gameOver){
+//                    Log.e(TAG, "" + board.getXpos());
+//                    Log.e(TAG, "" + board.getOpos());
+//                    Log.e(TAG, "" + board.getBig());
+//                    Log.e(TAG, ""+ board.getMegacount());
+//                    Log.e(TAG, "" + board.getMinicount());
+//                    Log.e(TAG, "" + board.getX());
+//                    Log.e(TAG, "" + board.getO());
+//                    Log.e(TAG, "" + board.getFirst());
+//                    Log.e(TAG, "" + board.getCpos());
+//                    Log.e(TAG, "" + board.getCplayer());
+//                    currXpos = board.xpos;
+//                    currOpos = board.opos;
+//                    threePlaces = stringToArray(board.big, 0);
+//                    greaterCount = board.megacount;
+//                    smallCount = stringToArray(board.minicount, 0);
+//                    setNinePlacesMatrix(stringToArray(board.xpos, 1), stringToArray(board.opos, 1));
+//                    if(board.first){
+//                        if(board.x.equals(user.getUid())){
+//                            player = 0;
+//                        }
+//                        else {
+//                            player = 1;
+//                        }
+//                    }
+//                    if(board.cplayer == player) {
+//                        if(!board.first){
+//                            if(player == 1){
+//                                ImageView temp = (ImageView) findViewById(smallImageViewIds[board.cpos]);
+//                                temp.setImageResource(R.drawable.x);
+//                                check(board.cpos, 0);
+//                            } else if (player == 0) {
+//                                ImageView temp = (ImageView) findViewById(smallImageViewIds[board.cpos]);
+//                                temp.setImageResource(R.drawable.o);
+//                                check(board.cpos, 1);
+//                            }
+//                        }
+//                        SpannableString spantext = new SpannableString("Your Turn");
+////                        spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 4, 0);
+//                        dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
+//                        unBlockAll();
+//                        if(!board.first && !gameOver) {
+//                            block(board.cpos);
+//                            ImageView temp = (ImageView) findViewById(smallImageViewIds[board.cpos]);
+//                            if(player == 1)
+//                                temp.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.xclrlight));
+//                            else if(player == 0)
+//                                temp.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.oclrlight));
+//                        }
+//                    }
+//                    else{
+//                        SpannableString spantext = new SpannableString("Opponent's Turn");
+////                        spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 8, 0);
+//                        dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
+//                        blockAll();
+//                    }
+//                }
+//                if(gameOver){
+//                    blockAll();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                Log.e(TAG,"dberror:"+databaseError);
+//            }
+//        });
+//    }
+    public int[] stringToArray(String arr, int i) {
+        String[] bigAsString = arr.replaceAll("\\s", "").split(",");
         int[] result = new int[bigAsString.length];
         for (; i < bigAsString.length; i++)
             result[i] = Integer.parseInt(bigAsString[i]);
         return result;
     }
 
-    public void setNinePlacesMatrix(int[] xp, int[] op){
-        for(int i = 1; i < xp.length; i++) {
+    public void setNinePlacesMatrix(int[] xp, int[] op) {
+        for (int i = 1; i < xp.length; i++) {
             ninePlaces[xp[i]] = 0;
         }
-        for(int i = 1; i < op.length; i++) {
+        for (int i = 1; i < op.length; i++) {
             ninePlaces[op[i]] = 1;
         }
     }
 
-    @IgnoreExtraProperties
-    public static class Player {
-        String pushKey = "";
-
-        public Player() {
-        }
-
-        public Player(String pushKey) {
-            this.pushKey = pushKey;
-        }
-
-        public String getUid() {
-            return pushKey;
-        }
-
-        public void setUid(String pushKey) {
-            this.pushKey = pushKey;
-        }
-    }
-
-    @IgnoreExtraProperties
-    public static class Board {
-        String big, minicount, o, opos, x, xpos;
-        int cplayer, megacount, cpos;
-        Boolean first;
-        public Board(){
-
-        }
-        public Board(String big, int cplayer, int cpos, Boolean first, int megacount, String minicount, String o, String opos, String x, String xpos){
-            this.big = big;
-            this.cplayer = cplayer;
-            this.cpos = cpos;
-            this.first = first;
-            this.megacount = megacount;
-            this.minicount = minicount;
-            this.o = o;
-            this.opos = opos;
-            this.x = x;
-            this.xpos = xpos;
-        }
-        public String getBig(){
-            return big;
-        }
-        public int getCplayer(){
-            return cplayer;
-        }
-        public int getCpos(){
-            return cpos;
-        }
-        public Boolean getFirst(){
-            return first;
-        }
-        public int getMegacount(){
-            return megacount;
-        }
-        public String getMinicount(){
-            return minicount;
-        }
-        public String getO(){
-            return o;
-        }
-        public String getOpos(){
-            return opos;
-        }
-        public String getX(){
-            return x;
-        }
-        public String getXpos(){
-            return xpos;
-        }
-    }
 }
