@@ -86,22 +86,61 @@ public class TwoPlayerOnline extends AppCompatActivity {
 //            temp.setClickable(false);
 //        }
         blockAll();
-        updateChildRef = FirebaseDatabase.getInstance().getReference("board/" + getIntent().getStringExtra("pushKey"));
+//        mDatabase = FirebaseDatabase.getInstance().getReference();
+//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//        user = mAuth.getCurrentUser();
+//        mDatabase.child("searching").child("modeNormal").push().child("uid").setValue(user.getUid());
+//        mDatabase.child("players/" + user.getUid()).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Player playerObj = dataSnapshot.getValue(Player.class);
+//                if(playerObj != null) {
+//                    updateChildRef = FirebaseDatabase.getInstance().getReference("board/" + playerObj.pushKey);
+//                    if(playerObj.pushKey != null) {
+//                        boardClass(playerObj.pushKey);
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//        });
+        winner = (TextView) findViewById(R.id.winner);
+        dispTurn = (TextView) findViewById(R.id.dispTurn);
+        dispTurn.setVisibility(View.VISIBLE);
+        playAgain = (Button) findViewById(R.id.pagain);
+        playAgain.setVisibility(View.INVISIBLE);
+        playAgain.setClickable(false);
+        back = (ImageView) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TwoPlayerOnline.this.finish();
+            }
+        });
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = mAuth.getCurrentUser();
+        updateChildRef = FirebaseDatabase.getInstance().getReference().child("board/" + getIntent().getStringExtra("pushKey"));
         updateChildRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Board board = dataSnapshot.getValue(Board.class);
                 if (board != null && !gameOver) {
-                    Log.e(TAG, "" + board.getXpos());
-                    Log.e(TAG, "" + board.getOpos());
-                    Log.e(TAG, "" + board.getBig());
-                    Log.e(TAG, "" + board.getMegacount());
-                    Log.e(TAG, "" + board.getMinicount());
-                    Log.e(TAG, "" + board.getX());
-                    Log.e(TAG, "" + board.getO());
-                    Log.e(TAG, "" + board.getFirst());
-                    Log.e(TAG, "" + board.getCpos());
-                    Log.e(TAG, "" + board.getCplayer());
+                    Log.e(TAG, "" + board.xpos);
+                    Log.e(TAG, "" + board.opos);
+                    Log.e(TAG, "" + board.big);
+                    Log.e(TAG, "" + board.megacount);
+                    Log.e(TAG, "" + board.minicount);
+                    Log.e(TAG, "" + board.x);
+                    Log.e(TAG, "" + board.o);
+                    Log.e(TAG, "" + board.first);
+                    Log.e(TAG, "" + board.cpos);
+                    Log.e(TAG, "" + board.cplayer);
                     currXpos = board.xpos;
                     currOpos = board.opos;
                     threePlaces = stringToArray(board.big, 0);
@@ -154,39 +193,6 @@ public class TwoPlayerOnline extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.e(TAG, "dberror:" + databaseError);
-            }
-        });
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
-//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//        user = mAuth.getCurrentUser();
-//        mDatabase.child("searching").child("modeNormal").push().child("uid").setValue(user.getUid());
-//        mDatabase.child("players/" + user.getUid()).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                Player playerObj = dataSnapshot.getValue(Player.class);
-//                if(playerObj != null) {
-//                    updateChildRef = FirebaseDatabase.getInstance().getReference("board/" + playerObj.pushKey);
-//                    if(playerObj.pushKey != null) {
-//                        boardClass(playerObj.pushKey);
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//        });
-        winner = (TextView) findViewById(R.id.winner);
-        dispTurn = (TextView) findViewById(R.id.dispTurn);
-        dispTurn.setVisibility(View.VISIBLE);
-        playAgain = (Button) findViewById(R.id.pagain);
-        playAgain.setVisibility(View.INVISIBLE);
-        playAgain.setClickable(false);
-        back = (ImageView) findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TwoPlayerOnline.this.finish();
             }
         });
     }

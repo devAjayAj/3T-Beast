@@ -1,13 +1,19 @@
 package com.beast.tictactoe.xo;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by aj on 24/6/17.
  */
-
+@IgnoreExtraProperties
 public class Board {
-    String big, minicount, o, opos, x, xpos;
-    int cplayer, megacount, cpos;
-    Boolean first;
+    public String big, minicount, o, opos, x, xpos;
+    public int cplayer, megacount, cpos;
+    public Boolean first;
     public Board(){
 
     }
@@ -23,34 +29,5 @@ public class Board {
         this.x = x;
         this.xpos = xpos;
     }
-    public String getBig(){
-        return big;
-    }
-    public int getCplayer(){
-        return cplayer;
-    }
-    public int getCpos(){
-        return cpos;
-    }
-    public Boolean getFirst(){
-        return first;
-    }
-    public int getMegacount(){
-        return megacount;
-    }
-    public String getMinicount(){
-        return minicount;
-    }
-    public String getO(){
-        return o;
-    }
-    public String getOpos(){
-        return opos;
-    }
-    public String getX(){
-        return x;
-    }
-    public String getXpos(){
-        return xpos;
-    }
+
 }

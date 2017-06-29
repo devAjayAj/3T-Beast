@@ -1,13 +1,17 @@
 package com.beast.tictactoe.xo;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * Created by aj on 24/6/17.
  */
 
+@IgnoreExtraProperties
 public class Player {
-    String pushKey = "";
+    public String pushKey = "";
 
     public Player() {
+
     }
 
     public Player(String pushKey) {
