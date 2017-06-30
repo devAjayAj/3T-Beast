@@ -35,6 +35,7 @@ import java.util.Map;
 
 public class TwoPlayerOnline extends AppCompatActivity {
     private static final String TAG = TwoPlayerOnline.class.getSimpleName();
+    Boolean changeGreaterCount;
     int greaterCount = 0, player = 2;
     int[] smallCount = {0, 0, 0, 0, 0, 0, 0, 0, 0}; //no. of small boxes played in each bigger one, Eg:[3, 0, 9, 2, 9, 0, 0, 0, 0], 3 small boxes played in 1st big box
     int[] ninePlaces = { //keep track of which small box is played and by whom
@@ -81,31 +82,7 @@ public class TwoPlayerOnline extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.beast);
-//        for (int i = 0; i < 9; i++) {
-//            LinearLayout temp = (LinearLayout) findViewById(bigImageViewIds[i]);
-//            temp.setClickable(false);
-//        }
         blockAll();
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
-//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//        user = mAuth.getCurrentUser();
-//        mDatabase.child("searching").child("modeNormal").push().child("uid").setValue(user.getUid());
-//        mDatabase.child("players/" + user.getUid()).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                Player playerObj = dataSnapshot.getValue(Player.class);
-//                if(playerObj != null) {
-//                    updateChildRef = FirebaseDatabase.getInstance().getReference("board/" + playerObj.pushKey);
-//                    if(playerObj.pushKey != null) {
-//                        boardClass(playerObj.pushKey);
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//        });
         winner = (TextView) findViewById(R.id.winner);
         dispTurn = (TextView) findViewById(R.id.dispTurn);
         dispTurn.setVisibility(View.VISIBLE);
@@ -159,11 +136,11 @@ public class TwoPlayerOnline extends AppCompatActivity {
                             if (player == 1) {
                                 ImageView temp = (ImageView) findViewById(smallImageViewIds[board.cpos]);
                                 temp.setImageResource(R.drawable.x);
-                                check(board.cpos, 0);
+                                check(board.cpos, 0, false);
                             } else if (player == 0) {
                                 ImageView temp = (ImageView) findViewById(smallImageViewIds[board.cpos]);
                                 temp.setImageResource(R.drawable.o);
-                                check(board.cpos, 1);
+                                check(board.cpos, 1, false);
                             }
                         }
                         SpannableString spantext = new SpannableString("Your Turn");
@@ -248,14 +225,15 @@ public class TwoPlayerOnline extends AppCompatActivity {
                 spantext.setSpan(new RelativeSizeSpan(1.7f), 0, 3, 0);
                 dispTurn.setText(spantext, TextView.BufferType.SPANNABLE);
             }
-            check(idNum, player);
+            check(idNum, player, true);
             writeData(idNum);
 //            if (!gameOver)
 //                block(idNum);
         }
     }
 
-    public void check(int idNum, int player) {
+    public void check(int idNum, int player, Boolean greaterCountValue) {
+        changeGreaterCount = greaterCountValue;
         int smallStart = (idNum / 9) * 9;
         int bigPos = idNum / 9;
         if (ninePlaces[smallStart] == ninePlaces[smallStart + 1] && ninePlaces[smallStart + 1] == ninePlaces[smallStart + 2] && ninePlaces[smallStart] != 2) {
@@ -295,7 +273,8 @@ public class TwoPlayerOnline extends AppCompatActivity {
             big.setBackgroundResource(R.drawable.x);
             big.setAlpha((float) 0.7);
             threePlaces[bigPos] = 0;
-            greaterCount++;
+            if(changeGreaterCount)
+                greaterCount++;
         } else if (player == 1) {
             s1.setImageResource(R.drawable.owin);
             s2.setImageResource(R.drawable.owin);
@@ -303,7 +282,8 @@ public class TwoPlayerOnline extends AppCompatActivity {
             big.setBackgroundResource(R.drawable.o);
             big.setAlpha((float) 0.7);
             threePlaces[bigPos] = 1;
-            greaterCount++;
+            if(changeGreaterCount)
+                greaterCount++;
         }
         checkBig();
     }
@@ -572,4 +552,8 @@ public class TwoPlayerOnline extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+    }
 }

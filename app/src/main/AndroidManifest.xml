@@ -35,7 +35,6 @@
         <activity android:name=".BeastOnePMenu" />
         <activity android:name=".BeastOnePEasyGame" />
         <activity android:name=".Menu" />
-        <activity android:name=".Test" />
         <activity android:name=".TwoPlayerOnline" />
         <activity android:name=".SearchingForPlayer"></activity>
     </application>

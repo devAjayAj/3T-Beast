@@ -11,8 +11,9 @@
     <string name="x">X:</string>
     <string name="x_turn">X Turn</string>
     <string name="select_info">U can now select one of these bigger boxes bla bla bla</string>
-    <string name="single_player">Single Player</string>
-    <string name="two_player">Two Players</string>
+    <string name="single_player"><font size="40">Single Player</font></string>
+    <string name="two_player"><font size="20">TWO PLAYERS</font>\n\<font size="10">(Same Device)</font></string>
+    <string name="two_player_online"><font size="30">TWO PLAYERS</font>\n\<font size="15">(Online)</font></string>
     <string name="selectdifficultlevel">Select Difficulty Level</string>
     <string name="easy">Beginner</string>
     <string name="hard">Expert</string>

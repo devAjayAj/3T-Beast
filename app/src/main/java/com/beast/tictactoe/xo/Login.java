@@ -112,7 +112,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
     public void updateUI(FirebaseUser user){
         if(user != null){
-            Intent intent = new Intent(Login.this, SearchingForPlayer.class);
+            Intent intent = new Intent(Login.this, Menu.class);
             this.finish();
             startActivity(intent);
         }

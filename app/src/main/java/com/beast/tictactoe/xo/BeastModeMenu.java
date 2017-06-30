@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class BeastModeMenu extends AppCompatActivity implements View.OnClickListener {
 
-    Button onep, twop;
+    Button onep, twop, twoponline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,8 @@ public class BeastModeMenu extends AppCompatActivity implements View.OnClickList
         onep.setOnClickListener(this);
         twop = (Button)findViewById(R.id.twop);
         twop.setOnClickListener(this);
+        twoponline = (Button)findViewById(R.id.twoponline);
+        twoponline.setOnClickListener(this);
     }
 
     @Override
@@ -28,6 +30,9 @@ public class BeastModeMenu extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.twop:
                 startActivity(new Intent(BeastModeMenu.this, Beast.class));
+                break;
+            case R.id.twoponline:
+                startActivity(new Intent(BeastModeMenu.this, SearchingForPlayer.class));
                 break;
         }
     }
